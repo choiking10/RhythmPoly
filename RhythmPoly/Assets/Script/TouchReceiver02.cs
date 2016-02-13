@@ -9,11 +9,15 @@ public class TouchReceiver02 : MonoBehaviour
 	public static bool IsAttached;
 	public static bool IsDetached;
 	public PolygonSpawn ps;
-
+    public Polygon userPoly;
 	public List<GameObject> scoreList;
 	public int finalScore;
 	bool isCorrectPoly = true;
 
+    void Start()
+    {
+        AllFalse();
+    }
     // Add Point
     public void TouchAttachPoint()
     {
@@ -22,6 +26,8 @@ public class TouchReceiver02 : MonoBehaviour
 		IsDetached = false;
 		for (int i = 0; i < 4 ; i++)
 			scoreList[i].SetActive (false);
+        userPoly.AttachRoutine();
+        
     }
     // Sub Point
     public void TouchDetachPoint()
@@ -31,48 +37,61 @@ public class TouchReceiver02 : MonoBehaviour
 		IsDetached = true;
 		for (int i = 0; i < 4 ; i++)
 			scoreList[i].SetActive (false);
+        userPoly.DetachRoutine();
     }
 
 	void Update() 
 	{
-		AllFalse ();
-		if (ps.GetFrontObject () != null) {
-			if (ps.GetFrontObject ().transform.localPosition.z > 1.0f)
-				ps.RemoveFrontObject ();
-			
-			if (Input.anyKeyDown && IsAttached == true) {
-				TouchAttachPoint ();
-			}
-			else if (Input.anyKeyDown && IsDetached == true) {
-				TouchDetachPoint ();
-			}
-			else if (Input.anyKeyDown) {
+        GameObject front = ps.GetFrontObject();
+        if (front != null && front.transform.localPosition.z >= 1)
+        {
+            ps.RemoveFrontObject();
+            AllFalse();
+            scoreList[0].SetActive(true);
+            finalScore += 0;
+        }
+
+        if (front != null && !IsAttached && !IsDetached)
+        {
+			if (Input.anyKeyDown) {
 				if (isCorrectPoly) {
-					if (ps.GetFrontObject ().transform.localPosition.z < -5.0f) {
+
+                    if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < -5.0f)
+                    {
 						AllFalse ();
 						scoreList [0].SetActive (true);
 						finalScore += 0;
-					} else if (ps.GetFrontObject ().transform.localPosition.z < -3.0f) {
+                    }
+                    else if (front.transform.localPosition.z < -2.0f)
+                    {
 						AllFalse ();
 						scoreList [1].SetActive (true);
 						finalScore += 1;
-					} else if (ps.GetFrontObject ().transform.localPosition.z < -1.0f) {
+                    }
+                    else if (front.transform.localPosition.z < -1.0f)
+                    {
 						AllFalse ();
 						scoreList [2].SetActive (true);
 						finalScore += 2;
-					} else if (ps.GetFrontObject ().transform.localPosition.z < 0.005f) {
+                    }
+                    else if (front.transform.localPosition.z < 0.05f)
+                    {
 						AllFalse ();
 						scoreList [3].SetActive (true);
 						finalScore += 3;
-					} else if (ps.GetFrontObject ().transform.localPosition.z < 1.0f) {
+                    }
+                    else if (front.transform.localPosition.z < 1.0f)
+                    {
 						AllFalse ();
 						scoreList [2].SetActive (true);
 						finalScore += 2;
 					}
 				}
-				ps.RemoveFrontObject ();
+                ps.RemoveFrontObject();
 			}
 		}
+        IsAttached = false;
+        IsDetached = false;
 
 	}
 

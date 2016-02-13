@@ -40,11 +40,14 @@ public class PolygonSpawn : MonoBehaviour
     }
     public GameObject GetFrontObject()
     {
+        if (spawnList.Count == 0) return null;
         return (GameObject)spawnList.Peek();
     }
     public void RemoveFrontObject()
     {
-        GameObject.Destroy((GameObject)spawnList.Peek());
-        spawnList.Dequeue();
+        Debug.Log(spawnList.Count);
+        if (spawnList.Count == 0) return;
+        GameObject.Destroy((GameObject)spawnList.Dequeue());
+        Debug.Log(spawnList.Count);
     }
 }

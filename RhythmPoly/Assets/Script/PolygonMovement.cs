@@ -9,7 +9,7 @@ public class PolygonMovement : MonoBehaviour {
    
     public const float UNIT = 10;
     public float speed;             //  After 'speed' seconds reaches
-    public float angspeed;          //  'angspeed' time rotation per falling
+    public float angspeed;          //  'angspeed' time rotation per falling    
     public ANGLE_DIRECTION angdir;  //  Direction of rotation
 
     public float bounce;            //  bounce ratio
@@ -39,12 +39,12 @@ public class PolygonMovement : MonoBehaviour {
         if (initflag)
         {
             /* falling */
-            if (gameObject.transform.localPosition.z < 0)
-                fallingRoutine();
+            //if (gameObject.transform.localPosition.z < 0)
+            fallingRoutine();
 
             /* Destroy */
-            if (gameObject.transform.localPosition.z > 0)
-                DestroyRoutine();
+           // if (gameObject.transform.localPosition.z > 0)
+            //    DestroyRoutine();
         }
     }
     void fallingRoutine()

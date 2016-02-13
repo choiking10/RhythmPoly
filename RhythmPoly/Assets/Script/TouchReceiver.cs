@@ -8,7 +8,7 @@ public class TouchReceiver : MonoBehaviour {
     public int score = 0;
     public static bool IsAttached;
     public static bool IsDetached;
-	PolygonSpawn ps;
+	public PolygonSpawn ps;
 
 	public List<GameObject> scoreList;
 	public int finalScore;
