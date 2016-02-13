@@ -26,7 +26,7 @@ class CameraMovement: MonoBehaviour
         else
         {
             transform.localEulerAngles = Vector3.MoveTowards(tmp, target, speed * Time.deltaTime);
-            Debug.Log(transform.localEulerAngles);
+            //Debug.Log(transform.localEulerAngles);
         }
     }
     Vector3 RandomGeneration()
