@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class Down : MonoBehaviour {
-    public float speed;
-    public float angspeed;
+    public enum ANGLE_DIRECTION{
+        CLOCK_WISE, COUNTER_CLOCK_WISE
+    };
+    public float speed;             //  하강 속도
+    public float angspeed;          //  회전 속도
+    public ANGLE_DIRECTION angdir;
     private Vector3 startVertex;
     private Vector3 mousePos;
 	// Use this for initialization
@@ -14,11 +18,11 @@ public class Down : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 pvec = gameObject.transform.position;
-        if (gameObject.transform.position.y > 0)
+        if (gameObject.transform.localPosition.z < 0)
         {
-            gameObject.transform.position -= new Vector3(0, speed, 0);
-            gameObject.transform.localScale -= new Vector3(speed, 0, speed);
-            gameObject.transform.eulerAngles += new Vector3(0, speed * angspeed, 0);
+            gameObject.transform.localPosition += new Vector3(0, 0, speed);
+         //   gameObject.transform.localScale -= new Vector3(speed, speed, 0);
+            gameObject.transform.localEulerAngles += new Vector3(0, 0, angspeed);
         }
 	}
 }
