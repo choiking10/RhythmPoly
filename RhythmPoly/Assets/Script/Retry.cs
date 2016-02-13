@@ -11,7 +11,7 @@ public class Retry : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		float f = TouchReceiver02.finalScore;
+		float f = TouchReceiver02.endScore;
 		int num = (int)f;
 		perfect.text = TouchReceiver02.perfect.ToString ();
 		great.text = TouchReceiver02.great.ToString ();
@@ -24,6 +24,7 @@ public class Retry : MonoBehaviour {
 		//Application.LoadLevel("InGameScene");
 		if (Input.anyKeyDown) {
 			TouchReceiver02.finalScore = 0;
+			TouchReceiver02.endScore = 0;
 			TouchReceiver02.miss = 0;
 			TouchReceiver02.good = 0;
 			TouchReceiver02.great = 0;
