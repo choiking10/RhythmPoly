@@ -152,7 +152,7 @@ namespace BestHTTP
         /// <summary>
         /// A basic ILogger implementation to be able to log intelligently additional informations about the plugin's internal mechanism.
         /// </summary>
-        public static ILogger Logger
+        public static Logger.ILogger Logger
         {
             get
             {
@@ -168,7 +168,7 @@ namespace BestHTTP
 
             set { logger = value; }
         }
-        private static ILogger logger;
+        private static Logger.ILogger logger;
 
 #if !BESTHTTP_DISABLE_ALTERNATE_SSL && (!UNITY_WEBGL || UNITY_EDITOR)
         /// <summary>
