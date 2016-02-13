@@ -8,13 +8,13 @@ public class Polygon : MonoBehaviour {
 	static GameObject nowPoly;
 	// Use this for initialization
 	void Start () {
-		for (int i = 1; i < 5; i++)
+		for (int i = 1; i < 4; i++)
 			poly [i].active = false;
 		nowPoly = poly [0];
 	}
     void AllFalse()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
             poly[i].active = false;
     }
     public void AttachRoutine()
@@ -45,14 +45,7 @@ public class Polygon : MonoBehaviour {
             lastPoly = 6;
             nowPoly = poly[3];
         }
-        else if (nowPoly == poly[3])
-        {
-            AllFalse();
-            poly[3].active = true;
-            nowPoly.GetComponent<Animator>().Play("6_7");
-            lastPoly = 7;
-            nowPoly = poly[4];
-        }
+        
         TouchReceiver.IsAttached = false;
     }
     public void DetachRoutine()
@@ -80,14 +73,6 @@ public class Polygon : MonoBehaviour {
             nowPoly.GetComponent<Animator>().Play("6_5");
             lastPoly = 5;
             nowPoly = poly[2];
-        }
-        if (nowPoly == poly[4])
-        {
-            AllFalse();
-            poly[4].active = true;
-            nowPoly.GetComponent<Animator>().Play("7_6");
-            lastPoly = 6;
-            nowPoly = poly[3];
         }
         TouchReceiver.IsDetached = false;
     }
