@@ -1,11 +1,11 @@
 /*
 http://www.cgsoso.com/forum-211-1.html
 
-CG?쒏맂 Unity3d 驪뤸뿥Unity3d?믢뻑?띹뉩?닸뼭 ?닸쐣VIP壅꾣틦竊?
+CG搜搜 Unity3d 每日Unity3d插件免费更新 更有VIP资源！
 
-CGSOSO 訝삥돀歷멩닆凉?묕펽壤김쭍溫얕?嶺덪G壅꾣틦榮졿쓲??
+CGSOSO 主打游戏开发，影视设计等CG资源素材。
 
-?믢뻑倻귟떏?녺뵪竊뚩??▼퓚若섊퐨兀?물竊?
+插件如若商用，请务必官网购买！
 
 daily assets update for try.
 
@@ -117,7 +117,7 @@ public sealed class AssetBundleSample : MonoBehaviour
 #endif
 
                     // Start creating the downloaded asset bundle
-                    AssetBundleCreateRequest async = AssetBundle.LoadFromMemoryAsync(request.Response.Data);
+                    AssetBundleCreateRequest async = AssetBundle.CreateFromMemory(request.Response.Data);
 
                     // wait for it
                     yield return async;
