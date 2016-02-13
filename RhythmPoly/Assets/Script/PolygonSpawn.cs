@@ -33,7 +33,9 @@ public class PolygonSpawn : MonoBehaviour
 	}
 	// Update is called once per frame
 	void Update () {
-	   
+
+        if (idx >= datas.Length) return;
+        if (datas[idx].timeline - datas[idx].speed * 1000 < delta) CreatePolygon();
 	}
     void MusicStart()
     {
@@ -43,9 +45,6 @@ public class PolygonSpawn : MonoBehaviour
     void FixedUpdate()
     {
         delta += (int)(Time.fixedDeltaTime * 1000f);
-        Debug.Log("timeline : " + datas[idx].timeline + "speed : " + datas[idx].speed * 1000 + "delta : " + delta);
-        if (idx >= datas.Length) return;
-        if (datas[idx].timeline - datas[idx].speed * 1000 < delta) CreatePolygon();
     }
     
     void CreatePolygon()
@@ -75,9 +74,7 @@ public class PolygonSpawn : MonoBehaviour
     }
     public void RemoveFrontObject()
     {
-        Debug.Log(spawnList.Count);
         if (spawnList.Count == 0) return;
         GameObject.Destroy((GameObject)spawnList.Dequeue());
-        Debug.Log(spawnList.Count);
     }
 }
