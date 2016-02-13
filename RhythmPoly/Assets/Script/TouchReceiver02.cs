@@ -11,12 +11,19 @@ public class TouchReceiver02 : MonoBehaviour
 	public PolygonSpawn ps;
     public Polygon userPoly;
 	public List<GameObject> scoreList;
-	public int finalScore;
+	public static float finalScore;
+	public UILabel scorelabel;
+	public UILabel combolabel;
+	public UISprite combosprite;
+	int combo;
+	public float[] scoreboard;
 	bool isCorrectPoly = true;
 
     void Start()
     {
         AllFalse();
+		scoreboard = new float[10];
+		scoreboard [0] = 1.1f;
     }
     // Add Point
     public void TouchAttachPoint()
@@ -58,33 +65,38 @@ public class TouchReceiver02 : MonoBehaviour
 
                     if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < -5.0f)
                     {
+						combo = 0;
 						AllFalse ();
 						scoreList [0].SetActive (true);
 						finalScore += 0;
                     }
-                    else if (front.transform.localPosition.z < -2.0f)
+                    else if (front.transform.localPosition.z < -1.5f)
                     {
+						combo++;
 						AllFalse ();
 						scoreList [1].SetActive (true);
-						finalScore += 1;
+						finalScore += 50*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < -1.0f)
+                    else if (front.transform.localPosition.z < -0.5f)
                     {
+						combo++;
 						AllFalse ();
 						scoreList [2].SetActive (true);
-						finalScore += 2;
+						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < 0.05f)
+                    else if (front.transform.localPosition.z < 0.02f)
                     {
+						combo++;
 						AllFalse ();
 						scoreList [3].SetActive (true);
-						finalScore += 3;
+						finalScore += 200*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < 1.0f)
+                    else if (front.transform.localPosition.z < 0.5f)
                     {
+						combo++;
 						AllFalse ();
 						scoreList [2].SetActive (true);
-						finalScore += 2;
+						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
 					}
 				}
                 ps.RemoveFrontObject();
@@ -92,7 +104,8 @@ public class TouchReceiver02 : MonoBehaviour
 		}
         IsAttached = false;
         IsDetached = false;
-
+		scorelabel.text = finalScore.ToString ();
+		combolabel.text = combo.ToString ();
 	}
 
 	void AllFalse() {
