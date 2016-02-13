@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PolygonSpawn : MonoBehaviour
 {
-    public GameObject target;
+    public GameObject[] target;
 	// Use this for initialization
 
     public float spawnTime;
@@ -15,11 +15,13 @@ public class PolygonSpawn : MonoBehaviour
     public float pathz;             // Descending path variable ratio
 
     public Queue spawnList;
-	void Start () {
+	
+    /* debug */
+    public int  idx = 0;
+    void Start () {
         spawnList = new Queue();
         Invoke("CreatePolygon",spawnTime);
 	}
-	
 	// Update is called once per frame
 	void Update () {
 	   
@@ -27,13 +29,13 @@ public class PolygonSpawn : MonoBehaviour
 
     void CreatePolygon()
     {
-        GameObject go = (GameObject)Instantiate(target,
+        GameObject go = (GameObject)Instantiate(target[idx],
                     gameObject.transform.position, gameObject.transform.rotation);
         go.transform.parent = gameObject.transform.parent;
         go.GetComponent<PolygonMovement>().init(speed, angspeed, angdir, bounce, pathz);
-        //if (angdir == ANGLE_DIRECTION.CLOCK_WISE) angdir = ANGLE_DIRECTION.COUNTER_CLOCK_WISE;
-        //else angdir = ANGLE_DIRECTION.CLOCK_WISE;
         spawnList.Enqueue(go);
+        idx++;
+        if (idx >= target.Length) idx = 0;
         Invoke("CreatePolygon", spawnTime);
     }
     public GameObject GetFrontObject()
