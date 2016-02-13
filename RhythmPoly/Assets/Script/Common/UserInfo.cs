@@ -36,5 +36,14 @@ namespace RhythmPoly.Common
             }
         }
 
+
+        public string DeviceID
+        {
+            get
+            {
+                return SystemInfo.deviceUniqueIdentifier;
+            }
+        }
+
     }
 }
