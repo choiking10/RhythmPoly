@@ -194,7 +194,8 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 4028824154787511821, guid: 0000000000000000d000000000000000,
+    type: 0}
   mFont: {fileID: 0}
   mText: 0
   mFontSize: 40
@@ -574,6 +575,21 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &922887385 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 151988, guid: a875c82143cd0cd46a513f1038eb84d6, type: 2}
+  m_PrefabInternal: {fileID: 1990389889}
+--- !u!114 &922887386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 922887385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35e87249188d472ea86334beb5583ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1012089509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1208,11 @@ Prefab:
       propertyPath: aspectRatio
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11452938, guid: a875c82143cd0cd46a513f1038eb84d6, type: 2}
+      propertyPath: mTrueTypeFont
+      value: 
+      objectReference: {fileID: 4028824154787511821, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents:
     - {fileID: 11406258, guid: a875c82143cd0cd46a513f1038eb84d6, type: 2}
     - {fileID: 11415976, guid: a875c82143cd0cd46a513f1038eb84d6, type: 2}

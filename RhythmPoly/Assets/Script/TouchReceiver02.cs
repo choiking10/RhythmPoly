@@ -17,6 +17,10 @@ public class TouchReceiver02 : MonoBehaviour
 	public UISprite combosprite;
 	int combo;
 	public float[] scoreboard;
+	public static int miss;
+	public static int good;
+	public static int great;
+	public static int perfect;
 	bool isCorrectPoly = true;
 
     void Start()
@@ -66,6 +70,7 @@ public class TouchReceiver02 : MonoBehaviour
                     if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < -5.0f)
                     {
 						combo = 0;
+						miss++;
 						AllFalse ();
 						scoreList [0].SetActive (true);
 						finalScore += 0;
@@ -73,6 +78,7 @@ public class TouchReceiver02 : MonoBehaviour
                     else if (front.transform.localPosition.z < -1.5f)
                     {
 						combo++;
+						good++;
 						AllFalse ();
 						scoreList [1].SetActive (true);
 						finalScore += 50*Mathf.Pow(scoreboard [0],combo);
@@ -80,6 +86,7 @@ public class TouchReceiver02 : MonoBehaviour
                     else if (front.transform.localPosition.z < -0.5f)
                     {
 						combo++;
+						great++;
 						AllFalse ();
 						scoreList [2].SetActive (true);
 						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
@@ -87,6 +94,7 @@ public class TouchReceiver02 : MonoBehaviour
                     else if (front.transform.localPosition.z < 0.02f)
                     {
 						combo++;
+						perfect++;
 						AllFalse ();
 						scoreList [3].SetActive (true);
 						finalScore += 200*Mathf.Pow(scoreboard [0],combo);
@@ -94,6 +102,7 @@ public class TouchReceiver02 : MonoBehaviour
                     else if (front.transform.localPosition.z < 0.5f)
                     {
 						combo++;
+						great++;
 						AllFalse ();
 						scoreList [2].SetActive (true);
 						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
