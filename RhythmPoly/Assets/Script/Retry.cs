@@ -118,9 +118,9 @@ public class Retry : MonoBehaviour {
     }
 
 
-    public void Update() {
+    public void retry() {
 		//Application.LoadLevel("InGameScene");
-		if (Input.anyKeyDown) {
+
 			TouchReceiver02.finalScore = 0;
 			TouchReceiver02.endScore = 0;
 			TouchReceiver02.miss = 0;
@@ -128,6 +128,11 @@ public class Retry : MonoBehaviour {
 			TouchReceiver02.great = 0;
 			TouchReceiver02.perfect = 0;
 			Application.LoadLevel("InGameScene");
-		}
+
+	}
+	public void facebook() {
+		//Application.LoadLevel("InGameScene");
+
+
 	}
 }
