@@ -8,8 +8,11 @@ using RhythmPoly.Common;
 
 public class MainCamera : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+
+    FacebookConnector fbConnector = new FacebookConnector();
+    int count = 0;
+    // Use this for initialization
+    void Start () {
 
         //ZPlayerPrefs.Initialize("UnitoneGames", "unitonepwpw75");
         //ZPlayerPrefs.SetString("score", "5");
@@ -17,6 +20,9 @@ public class MainCamera : MonoBehaviour {
         //Debug.Log(ZPlayerPrefs.GetString("score
         //UserInfo.Instance.Score = 10;
         //Debug.Log(UserInfo.Instance.Score); 
+
+        fbConnector.Init();
+      
     }
 
 
@@ -77,6 +83,12 @@ public class MainCamera : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-	
-	}
+        count++;
+
+        if (Input.GetMouseButton(0) && count > 100)
+        {
+            fbConnector.Login();
+        }
+
+    }
 }
