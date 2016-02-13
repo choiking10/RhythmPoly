@@ -38,7 +38,6 @@ public class TouchReceiver02 : MonoBehaviour
 		for (int i = 0; i < 4 ; i++)
 			scoreList[i].SetActive (false);
         userPoly.AttachRoutine();
-        Debug.Log("attach");
     }
     // Sub Point
     public void TouchDetachPoint()
@@ -49,7 +48,6 @@ public class TouchReceiver02 : MonoBehaviour
 		for (int i = 0; i < 4 ; i++)
 			scoreList[i].SetActive (false);
         userPoly.DetachRoutine();
-        Debug.Log("detach");
     }
 
 	void Update() 
