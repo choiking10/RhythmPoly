@@ -24,6 +24,20 @@ namespace RhythmPoly.Common
         }
 
 
+        public int Highscore
+        {
+            get
+            {
+                return ZPlayerPrefs.GetInt("highscore");
+            }
+            set
+            {
+                if(value > ZPlayerPrefs.GetInt("highscore"))
+                    ZPlayerPrefs.SetInt("highscore", value);
+            }
+        }
+
+
         public string Name
         {
             get
@@ -35,6 +49,20 @@ namespace RhythmPoly.Common
                 ZPlayerPrefs.SetString("Name", value);
             }
         }
+
+
+        public string Id
+        {
+            get
+            {
+                return ZPlayerPrefs.GetString("Id");
+            }
+            set
+            {
+                ZPlayerPrefs.SetString("Id", value);
+            }
+        }
+
 
 
         public string DeviceID

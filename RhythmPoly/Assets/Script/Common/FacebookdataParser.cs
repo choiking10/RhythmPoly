@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Facebook.MiniJSON;
+
+using RhythmPoly.Common;
 namespace RhythmPoly.Common
 {
     public struct FriendInfo
@@ -93,38 +95,13 @@ namespace RhythmPoly.Common
                     url = tempdic3["url"] as string;
                 }
 
-                if (tempdic.TryGetValue("score", out temp))
-                {
 
-                    Dictionary<string, object> tempdic2 = tempdic["score"] as Dictionary<string, object>;
-                    List<object> scoreslist = (List<object>)tempdic2["data"];
-                    for (int j = 0; j < scoreslist.Count; ++j)
-                    {
-                        Dictionary<string, object> tempdicScore = scoreslist[j] as Dictionary<string, object>;
-
-                        if (tempdicScore.TryGetValue("score", out temp))
-                        {
-                            var tempobj = tempdicScore["score"] as object;
-                            if (tempobj is long)
-                            {
-                                score = (long)tempobj;
-                            }
-                        }
-
-                        /*
-                        if (tempdicScore.TryGetValue("user", out temp))
-                        {
-                            Dictionary<string, object> tempdicUser = tempdic5["user"] as Dictionary<string, object>;
-                            uid = tempdicUser["id"] as string;
-                        }
-                        */
-
-                    }
-
-
-                }
+                UserInfo.Instance.Id = id;
+                UserInfo.Instance.Name = name;
 
                 myInfo = new FriendInfo(id, name, hasPicture, url, score);
+
+                
 
             }
             catch
