@@ -23,6 +23,11 @@ public class Retry : MonoBehaviour {
 	public void Update() {
 		//Application.LoadLevel("InGameScene");
 		if (Input.anyKeyDown) {
+			TouchReceiver02.finalScore = 0;
+			TouchReceiver02.miss = 0;
+			TouchReceiver02.good = 0;
+			TouchReceiver02.great = 0;
+			TouchReceiver02.perfect = 0;
 			Application.LoadLevel("InGameScene");
 		}
 	}
