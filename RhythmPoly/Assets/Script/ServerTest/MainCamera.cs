@@ -5,6 +5,7 @@ using RhythmPoly.Common;
 using BestHTTP;
 using System;
 using RhythmPoly.Common;
+using System.Collections.Generic;
 
 public class MainCamera : MonoBehaviour {
 
@@ -24,43 +25,51 @@ public class MainCamera : MonoBehaviour {
         //Debug.Log(UserInfo.Instance.Score); 
 
         fbConnector.Init();
+        List<UserListInfo>  userlist = ParseListInfo(UserInfo.Instance.UserList);
+        Debug.Log(UserInfo.Instance.UserList);
+    }
+
+    public List<UserListInfo> ParseListInfo(string var)
+    {
+        List<string> templist = new List<string>();
+        string temp = "";
+        foreach (char c in var)
+        {
+            if (c == ':')
+            {
+                templist.Add(temp);
+                temp = "";
+            }
+            else
+            {
+                temp += c.ToString();
+            }
+        }
+        List<UserListInfo> userlist = new List<UserListInfo>();
+        for (int i = 0; i < templist.Count; i = i + 3)
+        {
+            int high = 0;
+            if (templist[i + 2] != "")
+                high = int.Parse(templist[i + 2]);
+            userlist.Add(new UserListInfo(templist[i], templist[i + 1], high));
+        }
+
+        return userlist;
 
     }
 
 
 
-    /*
-    static bool NaverLogin1(String ID, String PW)
+
+    public void GetTopUser()
     {
-
-        WinHttpRequest Winhttp = new WinHttpRequest();
-
-        Winhttp.Open("POST", "https://nid.naver.com/nidlogin.login");
-        Winhttp.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        Winhttp.SetRequestHeader("Referer", "https://nid.naver.com/nidlogin.login");
-        Winhttp.Send("enctp=2&url=http://www.naver.com&enc_url=http://www.naver.com&postDataKey=&saveID=0&nvme=0&smart_level=1&id=" + ID + "&pw=" + PW);
-        Winhttp.WaitForResponse();
-
-        if (Winhttp.ResponseText.IndexOf("네이버에 등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.") == -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    */
-
-
-    public void GetData()
-    {
-        HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"testpage/"), onGetRequestFinished);
+        HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"gettopuser/"), onGetRequestFinished);
         request.Send();
     }
 
     void onGetRequestFinished(HTTPRequest request, HTTPResponse response)
     {
+        UserInfo.Instance.UserList = response.DataAsText;
         Debug.Log(response.DataAsText);
     }
     
@@ -68,8 +77,11 @@ public class MainCamera : MonoBehaviour {
     {
         try
         {
-            HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"testpost/"), HTTPMethods.Post, OnRequestFinished);
-            request.AddField("test", "ok!");
+            HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"setuser/"), HTTPMethods.Post, OnRequestFinished);
+            request.AddField("deviceid", UserInfo.Instance.DeviceID.ToString());
+            request.AddField("facebookid", UserInfo.Instance.Id.ToString());
+            request.AddField("name", UserInfo.Instance.Name.ToString());
+            request.AddField("highscore", UserInfo.Instance.Highscore.ToString());
             request.Send();
         }
         catch (Exception e)
@@ -79,6 +91,7 @@ public class MainCamera : MonoBehaviour {
     }
     void OnRequestFinished(HTTPRequest request, HTTPResponse response)
     {
+        UserInfo.Instance.WebId = response.DataAsText;
         Debug.Log(response.DataAsText);
     }
     
