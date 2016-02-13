@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum ANGLE_DIRECTION
+{
+    CLOCK_WISE, COUNTER_CLOCK_WISE
+};
 public class PolygonMovement : MonoBehaviour {
-    public enum ANGLE_DIRECTION{
-        CLOCK_WISE, COUNTER_CLOCK_WISE
-    };
-    public const float UNIT = 15;
-    public float speed;             //  하강 속도 1초만에 이동 2초만에 이동...
-    public float angspeed;          //  회전 속도  1번회전 2번 회전 ...
-    public float bounds;            //  바운스 비율
-    public float pathz;             // 하강 경로 변동 비율
-    public ANGLE_DIRECTION angdir;
+   
+    public const float UNIT = 10;
+    public float speed;             //  After 'speed' seconds reaches
+    public float angspeed;          //  'angspeed' time rotation per falling
+    public ANGLE_DIRECTION angdir;  //  Direction of rotation
+
+    public float bounce;            //  bounce ratio
+    public float pathz;             // Descending path variable ratio
+
+    public bool initflag = false;
+    /* Debug */
     public float nu;
     public float tnu;
 	// Use this for initialization
@@ -18,35 +24,56 @@ public class PolygonMovement : MonoBehaviour {
         nu = 0;
         tnu = 0;
 	}
+    public void init(float speed, float angspeed, ANGLE_DIRECTION dir, float bounce,float pathz)
+    {
+        this.speed = speed;
+        this.angspeed = angspeed;
+        this.angdir = dir;
+        this.bounce = bounce;
+        this.pathz = pathz;
+
+        initflag = true;
+    }
     void FixedUpdate()
     {
-        float rspeed = SpeedFunction();
-        if (gameObject.transform.localPosition.z < 0)
+        if (initflag)
         {
-            gameObject.transform.localPosition += new Vector3(0, 0, rspeed);
-            gameObject.transform.localEulerAngles += new Vector3(0, 0, AngleSpeedFunction());
-            
-            /* Debug code */
-            nu += rspeed;
-            tnu += Time.fixedDeltaTime;
-        }
-        if (gameObject.transform.localPosition.z > 0)
-        {
-            Vector3 vec = gameObject.transform.localPosition;
-            vec.z = 0;
-            gameObject.transform.localPosition = vec;
-            gameObject.transform.localEulerAngles = Vector3.zero;
+            /* falling */
+            if (gameObject.transform.localPosition.z < 0)
+                fallingRoutine();
 
-            /* Debug code */
-            Debug.Log(nu);
-            nu = 0;
-            Debug.Log(tnu);
-            tnu = 0;
+            /* Destroy */
+            if (gameObject.transform.localPosition.z > 0)
+                DestroyRoutine();
         }
     }
+
+
+    void fallingRoutine()
+    {
+        gameObject.transform.localPosition += new Vector3(0, 0, SpeedFunction());
+        gameObject.transform.localEulerAngles += new Vector3(0, 0, AngleSpeedFunction());
+
+        /* Debug code */
+        tnu += Time.fixedDeltaTime;
+    }
+    void DestroyRoutine()
+    {
+        Vector3 vec = gameObject.transform.localPosition;
+        vec.z = 0;
+        gameObject.transform.localPosition = vec;
+        gameObject.transform.localEulerAngles = Vector3.zero;
+
+        /* Debug code */
+        Debug.Log(tnu);
+
+        /* Destroy gameObject  => can be change*/
+        GameObject.Destroy(gameObject);
+    }
+
     float SpeedFunction()
     {
-        return UNIT / speed * Time.fixedDeltaTime; // 타이밍이 ㅠ 
+        return UNIT / speed * Time.fixedDeltaTime; // 
     }
     float AngleSpeedFunction()
     {
@@ -54,10 +81,10 @@ public class PolygonMovement : MonoBehaviour {
 
         switch (angdir)
         {
-            case ANGLE_DIRECTION.CLOCK_WISE :
+            case ANGLE_DIRECTION.CLOCK_WISE:
                 ret = ret * -1;
                 break;
-            case ANGLE_DIRECTION.COUNTER_CLOCK_WISE :
+            case ANGLE_DIRECTION.COUNTER_CLOCK_WISE:
                 break;
         }
         return ret;

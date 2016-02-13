@@ -1,15 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PolygonSponer : MonoBehaviour {
+public class PolygonSpawn : MonoBehaviour
+{
     public GameObject target;
 	// Use this for initialization
+
+    public float spawnTime;
+    public float speed;             //  After 'speed' seconds reaches
+    public float angspeed;          //  'angspeed' time rotation per falling
+    public ANGLE_DIRECTION angdir;  //  Direction of rotation
+
+    public float bounce;            //  bounce ratio
+    public float pathz;             // Descending path variable ratio
+
 	void Start () {
-	
+        Invoke("CreatePolygon",spawnTime);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	   
 	}
+
+    void CreatePolygon()
+    {
+        GameObject go = (GameObject)Instantiate(target,
+                    gameObject.transform.position, gameObject.transform.rotation);
+        go.transform.parent = gameObject.transform.parent;
+        go.GetComponent<PolygonMovement>().init(speed, angspeed, angdir, bounce, pathz);
+        Invoke("CreatePolygon", spawnTime);
+    }
 }
