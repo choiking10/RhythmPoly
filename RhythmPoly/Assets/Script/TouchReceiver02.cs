@@ -12,6 +12,7 @@ public class TouchReceiver02 : MonoBehaviour
     public Polygon userPoly;
 	public List<GameObject> scoreList;
 	public static float finalScore;
+	public static int endScore;
 	public UILabel scorelabel;
 	public UILabel combolabel;
 	public UISprite combosprite;
@@ -104,7 +105,8 @@ public class TouchReceiver02 : MonoBehaviour
 		}
         IsAttached = false;
         IsDetached = false;
-		scorelabel.text = finalScore.ToString ();
+		endScore = (int)finalScore;
+		scorelabel.text = endScore.ToString ();
 		combolabel.text = combo.ToString ();
 	}
 
