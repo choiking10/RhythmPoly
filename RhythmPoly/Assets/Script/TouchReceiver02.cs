@@ -50,7 +50,7 @@ public class TouchReceiver02 : MonoBehaviour
 	void Update() 
 	{
         GameObject front = ps.GetFrontObject();
-        if (front != null && front.transform.localPosition.z >= 1)
+        if (front != null && front.transform.localPosition.z >= 0.06)
         {
             ps.RemoveFrontObject();
             AllFalse();
@@ -84,20 +84,13 @@ public class TouchReceiver02 : MonoBehaviour
 						scoreList [2].SetActive (true);
 						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < 0.02f)
+                    else if (front.transform.localPosition.z < 0.05f)
                     {
 						combo++;
 						AllFalse ();
 						scoreList [3].SetActive (true);
 						finalScore += 200*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < 0.5f)
-                    {
-						combo++;
-						AllFalse ();
-						scoreList [2].SetActive (true);
-						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
-					}
 				}
                 ps.RemoveFrontObject();
 			}

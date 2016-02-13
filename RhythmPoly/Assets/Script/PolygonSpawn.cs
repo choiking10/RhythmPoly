@@ -4,7 +4,9 @@ using System.Collections;
 public class PolygonSpawn : MonoBehaviour
 {
     public GameObject[] target;
-	// Use this for initialization
+    public PolygonData[] datas;
+    public AudioSource audiosource;
+    // Use this for initialization
 
     public float spawnTime;
     public float speed;             //  After 'speed' seconds reaches
@@ -14,29 +16,57 @@ public class PolygonSpawn : MonoBehaviour
     public float bounce;            //  bounce ratio
     public float pathz;             // Descending path variable ratio
 
-    public Queue spawnList;
+    private Queue spawnList;
+
+    public string filename;
 	
     /* debug */
-    public int  idx = 0;
+    public int idx = 0;
+    public int bef = 3;
+    public int delta = 0;
+    public int ppreIdx = 0;
     void Start () {
         spawnList = new Queue();
-        Invoke("CreatePolygon",spawnTime);
+        datas = PolygonData.GetDataFromFile(filename);
+        Debug.Log("test :" + datas); 
+        Invoke("MusicStart", 1f);
 	}
 	// Update is called once per frame
 	void Update () {
 	   
 	}
-
+    void MusicStart()
+    {
+        delta = 0;
+        audiosource.Play();
+    }
+    void FixedUpdate()
+    {
+        delta += (int)(Time.fixedDeltaTime * 1000f);
+        Debug.Log("timeline : " + datas[idx].timeline + "speed : " + datas[idx].speed * 1000 + "delta : " + delta);
+        if (idx >= datas.Length) return;
+        if (datas[idx].timeline - datas[idx].speed * 1000 < delta) CreatePolygon();
+    }
+    
     void CreatePolygon()
     {
-        GameObject go = (GameObject)Instantiate(target[idx],
+        GameObject go = (GameObject)Instantiate(nextPrefab(),
                     gameObject.transform.position, gameObject.transform.rotation);
         go.transform.parent = gameObject.transform.parent;
-        go.GetComponent<PolygonMovement>().init(speed, angspeed, angdir, bounce, pathz);
+        go.GetComponent<PolygonMovement>().init(datas[idx].speed, datas[idx].angspeed, datas[idx].angdir, bounce, pathz);
         spawnList.Enqueue(go);
+
         idx++;
-        if (idx >= target.Length) idx = 0;
-        Invoke("CreatePolygon", spawnTime);
+
+        //if(datas.Length > idx)
+          //  Invoke("CreatePolygon", spawnTime);
+    }
+    public GameObject nextPrefab()
+    {
+        int nextIdx = Random.Range(ppreIdx - datas[idx].limit_change < 0 ? 0 : ppreIdx - datas[idx].limit_change,
+                                ppreIdx + datas[idx].limit_change > 3 ? 3 : ppreIdx + datas[idx].limit_change);
+        ppreIdx = nextIdx;
+        return target[nextIdx];
     }
     public GameObject GetFrontObject()
     {
