@@ -14,7 +14,9 @@ public class PolygonSpawn : MonoBehaviour
     public float bounce;            //  bounce ratio
     public float pathz;             // Descending path variable ratio
 
+    public Queue spawnList;
 	void Start () {
+        spawnList = new Queue();
         Invoke("CreatePolygon",spawnTime);
 	}
 	
@@ -31,6 +33,16 @@ public class PolygonSpawn : MonoBehaviour
         go.GetComponent<PolygonMovement>().init(speed, angspeed, angdir, bounce, pathz);
         //if (angdir == ANGLE_DIRECTION.CLOCK_WISE) angdir = ANGLE_DIRECTION.COUNTER_CLOCK_WISE;
         //else angdir = ANGLE_DIRECTION.CLOCK_WISE;
+        spawnList.Enqueue(go);
         Invoke("CreatePolygon", spawnTime);
+    }
+    GameObject GetFrontObject()
+    {
+        return (GameObject)spawnList.Peek();
+    }
+    void RemoveFrontObject()
+    {
+        GameObject.Destroy((GameObject)spawnList.Peek());
+        spawnList.Dequeue();
     }
 }

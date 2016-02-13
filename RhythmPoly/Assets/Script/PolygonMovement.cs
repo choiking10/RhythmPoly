@@ -66,7 +66,7 @@ public class PolygonMovement : MonoBehaviour {
         Debug.Log(tnu);
 
         /* Destroy gameObject  => can be change*/
-        GameObject.Destroy(gameObject);
+        //GameObject.Destroy(gameObject);
     }
 
     float SpeedFunction()
