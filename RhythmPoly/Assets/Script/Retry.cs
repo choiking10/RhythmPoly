@@ -17,6 +17,7 @@ public class Retry : MonoBehaviour {
 
     public GameObject mygradeObj;
     List<UserListInfo> userlist = new List<UserListInfo>();
+    FacebookConnector fbConnector = new FacebookConnector();
 
     private void SetHighScoreText()
     {
@@ -39,7 +40,7 @@ public class Retry : MonoBehaviour {
 		good.text = TouchReceiver02.good.ToString ();
 		miss.text = TouchReceiver02.miss.ToString ();
 		score.text = num.ToString ();
-
+        fbConnector.Init();
         if (UserInfo.Instance.Highscore > num)
         {
             UserInfo.Instance.Highscore = num;
