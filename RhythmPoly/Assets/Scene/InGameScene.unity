@@ -1065,9 +1065,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087183572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 5df6fc3e8dce34dd68f1fc530f8e2f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 308333369}
+  functionName: DoubleTouch
+  trigger: 3
+  includeChildren: 1
 --- !u!65 &1087183575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1496,10 +1500,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df6fc3e8dce34dd68f1fc530f8e2f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 308333369}
   functionName: TouchDetachPoint
-  trigger: 0
-  includeChildren: 0
+  trigger: 3
+  includeChildren: 1
 --- !u!65 &1253767294
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2065,10 +2069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df6fc3e8dce34dd68f1fc530f8e2f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  functionName: 
-  trigger: 0
-  includeChildren: 0
+  target: {fileID: 308333369}
+  functionName: TouchAttachPoint
+  trigger: 3
+  includeChildren: 1
 --- !u!65 &1798694857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2246,8 +2250,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 4028824154787511821, guid: 0000000000000000d000000000000000,
-    type: 0}
+  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
   mText: 0
   mFontSize: 40
