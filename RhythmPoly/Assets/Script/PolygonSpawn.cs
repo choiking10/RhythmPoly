@@ -29,6 +29,8 @@ public class PolygonSpawn : MonoBehaviour
                     gameObject.transform.position, gameObject.transform.rotation);
         go.transform.parent = gameObject.transform.parent;
         go.GetComponent<PolygonMovement>().init(speed, angspeed, angdir, bounce, pathz);
+        //if (angdir == ANGLE_DIRECTION.CLOCK_WISE) angdir = ANGLE_DIRECTION.COUNTER_CLOCK_WISE;
+        //else angdir = ANGLE_DIRECTION.CLOCK_WISE;
         Invoke("CreatePolygon", spawnTime);
     }
 }

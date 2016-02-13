@@ -47,13 +47,11 @@ public class PolygonMovement : MonoBehaviour {
                 DestroyRoutine();
         }
     }
-
-
     void fallingRoutine()
     {
         gameObject.transform.localPosition += new Vector3(0, 0, SpeedFunction());
         gameObject.transform.localEulerAngles += new Vector3(0, 0, AngleSpeedFunction());
-
+        gameObject.transform.localScale = new Vector3(1 + ScaleSpeedFunction(), 1 + ScaleSpeedFunction(), 1);
         /* Debug code */
         tnu += Time.fixedDeltaTime;
     }
@@ -89,4 +87,9 @@ public class PolygonMovement : MonoBehaviour {
         }
         return ret;
     }
+    float ScaleSpeedFunction()
+    {
+        return - gameObject.transform.localPosition.z / 10 * 1.5f;
+    }
+    
 }
