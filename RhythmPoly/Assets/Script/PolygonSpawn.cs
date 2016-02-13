@@ -36,11 +36,11 @@ public class PolygonSpawn : MonoBehaviour
         spawnList.Enqueue(go);
         Invoke("CreatePolygon", spawnTime);
     }
-    GameObject GetFrontObject()
+    public GameObject GetFrontObject()
     {
         return (GameObject)spawnList.Peek();
     }
-    void RemoveFrontObject()
+    public void RemoveFrontObject()
     {
         GameObject.Destroy((GameObject)spawnList.Peek());
         spawnList.Dequeue();
