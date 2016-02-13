@@ -72,6 +72,7 @@ public class UIButton : UIButtonColor
 	/// </summary>
 
 	public List<EventDelegate> onClick = new List<EventDelegate>();
+    public List<EventDelegate> onDoublePress = new List<EventDelegate>();
 
 	// Cached value
 	[System.NonSerialized] UISprite mSprite;
@@ -222,6 +223,7 @@ public class UIButton : UIButtonColor
 
 	protected override void OnDragOver ()
 	{
+        
 		if (isEnabled && (dragHighlight || UICamera.currentTouch.pressed == gameObject))
 			base.OnDragOver();
 	}
