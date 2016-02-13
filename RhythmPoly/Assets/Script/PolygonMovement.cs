@@ -8,6 +8,7 @@ public enum ANGLE_DIRECTION
 public class PolygonMovement : MonoBehaviour {
    
     public const float UNIT = 10;
+    public const float EFFECT_SPEED = 1f;
     public float speed;             //  After 'speed' seconds reaches
     public float angspeed;          //  'angspeed' time rotation per falling    
     public ANGLE_DIRECTION angdir;  //  Direction of rotation
@@ -16,6 +17,7 @@ public class PolygonMovement : MonoBehaviour {
     public float pathz;             // Descending path variable ratio
 
     public bool initflag = false;
+    public bool destroyflag = false;
     /* Debug */
     public float nu;
     public float tnu;
@@ -38,13 +40,12 @@ public class PolygonMovement : MonoBehaviour {
     {
         if (initflag)
         {
-            /* falling */
-            //if (gameObject.transform.localPosition.z < 0)
             fallingRoutine();
-
-            /* Destroy */
-           // if (gameObject.transform.localPosition.z > 0)
-            //    DestroyRoutine();
+        }
+        if (destroyflag)
+        {
+            initflag = false;
+            DestroyRoutine();
         }
     }
     void fallingRoutine()
@@ -57,16 +58,9 @@ public class PolygonMovement : MonoBehaviour {
     }
     void DestroyRoutine()
     {
-        Vector3 vec = gameObject.transform.localPosition;
-        vec.z = 0;
-        gameObject.transform.localPosition = vec;
-        gameObject.transform.localEulerAngles = Vector3.zero;
-
-        /* Debug code */
-        Debug.Log(tnu);
-
-        /* Destroy gameObject  => can be change*/
-        //GameObject.Destroy(gameObject);
+        gameObject.transform.localScale += new Vector3(EFFECT_SPEED, EFFECT_SPEED, 0);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f,0f,0f,0.05f);
+       // gameObject.transform.
     }
 
     float SpeedFunction()

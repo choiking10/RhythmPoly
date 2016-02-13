@@ -75,6 +75,6 @@ public class PolygonSpawn : MonoBehaviour
     public void RemoveFrontObject()
     {
         if (spawnList.Count == 0) return;
-        GameObject.Destroy((GameObject)spawnList.Dequeue());
+        ((GameObject)spawnList.Dequeue()).GetComponent<PolygonMovement>().destroyflag = true;
     }
 }

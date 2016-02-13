@@ -10,7 +10,7 @@ public class GameOver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Invoke ("gameover",20.0441f);
+		Invoke ("gameover",120f);
 	}
 
 	void gameover() {
