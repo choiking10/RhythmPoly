@@ -14,6 +14,7 @@ public class TouchReceiver02 : MonoBehaviour
 	public static float finalScore;
 	public UILabel scorelabel;
 	public UILabel combolabel;
+	public UISprite combosprite;
 	int combo;
 	public float[] scoreboard;
 	bool isCorrectPoly = true;
@@ -104,7 +105,7 @@ public class TouchReceiver02 : MonoBehaviour
         IsAttached = false;
         IsDetached = false;
 		scorelabel.text = finalScore.ToString ();
-		combolabel.text = combo.ToString ()+" combo";
+		combolabel.text = combo.ToString ();
 	}
 
 	void AllFalse() {
