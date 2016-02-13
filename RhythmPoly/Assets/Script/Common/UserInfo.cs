@@ -38,6 +38,9 @@ namespace RhythmPoly.Common
         }
 
 
+       
+
+
         public string Name
         {
             get
@@ -60,6 +63,30 @@ namespace RhythmPoly.Common
             set
             {
                 ZPlayerPrefs.SetString("Id", value);
+            }
+        }
+
+        public string WebId
+        {
+            get
+            {
+                return ZPlayerPrefs.GetString("WebId");
+            }
+            set
+            {
+                ZPlayerPrefs.SetString("WebId", value);
+            }
+        }
+
+        public string UserList
+        {
+            get
+            {
+                return ZPlayerPrefs.GetString("UserList");
+            }
+            set
+            {
+                ZPlayerPrefs.SetString("UserList", value);
             }
         }
 
