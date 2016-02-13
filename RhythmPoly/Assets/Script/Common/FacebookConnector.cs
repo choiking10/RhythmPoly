@@ -10,7 +10,7 @@ namespace RhythmPoly.Common
     {
 
 
-
+        public static string success = "";
 
         FacebookdataParser fparser = new FacebookdataParser();
         public FacebookConnector()
@@ -102,7 +102,9 @@ namespace RhythmPoly.Common
             {
                 this.Status = "Success - Check log for details";
                 this.LastResponse = "Success Response:\n" + result.RawResult;
-                
+
+                GetMyInfo();
+            
             }
             else
             {

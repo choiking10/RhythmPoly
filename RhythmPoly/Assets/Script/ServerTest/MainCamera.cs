@@ -11,6 +11,8 @@ public class MainCamera : MonoBehaviour {
 
     FacebookConnector fbConnector = new FacebookConnector();
     int count = 0;
+
+    public GameObject labelobj;
     // Use this for initialization
     void Start () {
 
@@ -22,7 +24,7 @@ public class MainCamera : MonoBehaviour {
         //Debug.Log(UserInfo.Instance.Score); 
 
         fbConnector.Init();
-      
+
     }
 
 
@@ -88,6 +90,11 @@ public class MainCamera : MonoBehaviour {
         if (Input.GetMouseButton(0) && count > 100)
         {
             fbConnector.Login();
+        }
+
+        if (UserInfo.Instance.Id != "")
+        {
+            labelobj.GetComponent<UILabel>().text = UserInfo.Instance.Name + UserInfo.Instance.Id;
         }
 
     }
