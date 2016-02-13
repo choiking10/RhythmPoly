@@ -18,6 +18,7 @@ public class PolygonMovement : MonoBehaviour {
 
     public bool initflag = false;
     public bool destroyflag = false;
+    public bool perfactflag = false;
     /* Debug */
     public float nu;
     public float tnu;
@@ -47,6 +48,12 @@ public class PolygonMovement : MonoBehaviour {
             initflag = false;
             DestroyRoutine();
         }
+        if (perfactflag)
+        {
+            if (initflag) Invoke("DestroyRoutine", 3f);
+            initflag = false;
+            PerfactRoutine();
+        }
     }
     void fallingRoutine()
     {
@@ -56,13 +63,23 @@ public class PolygonMovement : MonoBehaviour {
         /* Debug code */
         tnu += Time.fixedDeltaTime;
     }
+    void PerfactRoutine()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(51f / 255f, 102f / 255f, 213f / 255f, 1f);
+        gameObject.transform.localScale += new Vector3(EFFECT_SPEED, EFFECT_SPEED, 0);
+    }
     void DestroyRoutine()
     {
-        gameObject.transform.localScale += new Vector3(EFFECT_SPEED, EFFECT_SPEED, 0);
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f,0f,0f,0.05f);
+        //gameObject.transform.localScale += new Vector3(EFFECT_SPEED, EFFECT_SPEED, 0);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(51f / 255f, 102f / 255f, 213f / 255f, 1f);
+        Invoke("DestroySelf", 0.5f);
+        destroyflag = false;
        // gameObject.transform.
     }
-
+    void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
     float SpeedFunction()
     {
         return UNIT / speed * Time.fixedDeltaTime; // 
