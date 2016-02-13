@@ -60,7 +60,7 @@ public class TouchReceiver : MonoBehaviour {
 						scoreList [2].SetActive (true);
 						finalScore += 2;
 					}
-					else if (ps.GetFrontObject().transform.localPosition.z < 0.005) {
+					else if (ps.GetFrontObject().transform.localPosition.z < - 0.005) {
 						AllFalse ();
 						scoreList [3].SetActive (true);
 						finalScore += 3;

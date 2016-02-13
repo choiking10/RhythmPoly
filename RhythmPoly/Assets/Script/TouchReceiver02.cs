@@ -53,7 +53,7 @@ public class TouchReceiver02 : MonoBehaviour
 	void Update() 
 	{
         GameObject front = ps.GetFrontObject();
-        if (front != null && front.transform.localPosition.z >= 1)
+        if (front != null && front.transform.localPosition.z >= 0.15f)
         {
             ps.RemoveFrontObject();
             AllFalse();
@@ -66,7 +66,7 @@ public class TouchReceiver02 : MonoBehaviour
 			if (Input.anyKeyDown) {
 				if (isCorrectPoly) {
 
-                    if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < -5.0f)
+                    if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < -1f)
                     {
 						combo = 0;
 						miss++;
@@ -74,7 +74,7 @@ public class TouchReceiver02 : MonoBehaviour
 						scoreList [0].SetActive (true);
 						finalScore += 0;
                     }
-                    else if (front.transform.localPosition.z < -1.5f)
+                    else if (front.transform.localPosition.z < -0.5f)
                     {
 						combo++;
 						good++;
@@ -82,7 +82,7 @@ public class TouchReceiver02 : MonoBehaviour
 						scoreList [1].SetActive (true);
 						finalScore += 50*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < -0.5f)
+                    else if (front.transform.localPosition.z < -0.15f)
                     {
 						combo++;
 						great++;
@@ -90,7 +90,7 @@ public class TouchReceiver02 : MonoBehaviour
 						scoreList [2].SetActive (true);
 						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < 0.02f)
+                    else if (front.transform.localPosition.z < 0.15f)
                     {
 						combo++;
 						perfect++;
@@ -98,14 +98,6 @@ public class TouchReceiver02 : MonoBehaviour
 						scoreList [3].SetActive (true);
 						finalScore += 200*Mathf.Pow(scoreboard [0],combo);
                     }
-                    else if (front.transform.localPosition.z < 0.5f)
-                    {
-						combo++;
-						great++;
-						AllFalse ();
-						scoreList [2].SetActive (true);
-						finalScore += 100*Mathf.Pow(scoreboard [0],combo);
-					}
 				}
                 ps.RemoveFrontObject();
 			}
