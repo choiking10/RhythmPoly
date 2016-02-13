@@ -471,7 +471,7 @@ MonoBehaviour:
   great: {fileID: 876689328}
   good: {fileID: 972606047}
   miss: {fileID: 1153022884}
-  score: {fileID: 0}
+  score: {fileID: 803012158}
 --- !u!1 &803012156
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,8 +919,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1141227474}
   - 212: {fileID: 1141227473}
-  - 114: {fileID: 1141227475}
-  - 65: {fileID: 1141227472}
+  - 114: {fileID: 1141227472}
   m_Layer: 0
   m_Name: retry
   m_TagString: Untagged
@@ -928,18 +927,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1141227472
-BoxCollider:
+--- !u!114 &1141227472
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1141227471}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.08, y: 1.15, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93112bb4af894b11a18e8d4380f4b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perfect: {fileID: 430753420}
+  great: {fileID: 876689328}
+  good: {fileID: 972606047}
+  miss: {fileID: 1153022884}
+  score: {fileID: 803012158}
 --- !u!212 &1141227473
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -982,36 +985,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &1141227475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1141227471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 1141227471}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
-  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.2
-  dragHighlight: 0
-  hoverSprite: 
-  pressedSprite: 
-  disabledSprite: 
-  hoverSprite2D: {fileID: 0}
-  pressedSprite2D: {fileID: 0}
-  disabledSprite2D: {fileID: 0}
-  pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 760738053}
-    mMethodName: OnClick
-    mParameters: []
-    oneShot: 0
-  onDoublePress: []
 --- !u!1 &1153022882
 GameObject:
   m_ObjectHideFlags: 0

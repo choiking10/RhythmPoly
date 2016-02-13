@@ -19,9 +19,11 @@ public class Retry : MonoBehaviour {
 		miss.text = TouchReceiver02.miss.ToString ();
 		score.text = num.ToString ();
 	}
-	
-	// Update is called once per frame
-	public void OnClick () {
-		Application.LoadLevel("InGameScene");
+
+	public void Update() {
+		//Application.LoadLevel("InGameScene");
+		if (Input.anyKeyDown) {
+			Application.LoadLevel("InGameScene");
+		}
 	}
 }
