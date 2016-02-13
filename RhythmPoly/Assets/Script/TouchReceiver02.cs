@@ -8,7 +8,7 @@ public class TouchReceiver02 : MonoBehaviour
 	public int score = 0;
 	public static bool IsAttached;
 	public static bool IsDetached;
-	PolygonSpawn ps;
+	public PolygonSpawn ps;
 
 	public List<GameObject> scoreList;
 	public int finalScore;
@@ -18,7 +18,6 @@ public class TouchReceiver02 : MonoBehaviour
     public void TouchAttachPoint()
     {
 		count++;
-		DoubleTouchPoint();
 		IsAttached = true;
 		IsDetached = false;
 		for (int i = 0; i < 4 ; i++)
@@ -28,54 +27,53 @@ public class TouchReceiver02 : MonoBehaviour
     public void TouchDetachPoint()
     {
 		count++;
-		DoubleTouchPoint();
 		IsAttached = false;
 		IsDetached = true;
 		for (int i = 0; i < 4 ; i++)
 			scoreList[i].SetActive (false);
     }
 
-	public void InitCount() 
+	void Update() 
 	{
-		count = 0;
-	}
-
-	public void DoubleTouchPoint() 
-	{
-		if (count == 2)
-		{
-			if (Input.anyKeyDown) {
+		AllFalse ();
+		if (ps.GetFrontObject () != null) {
+			if (ps.GetFrontObject ().transform.localPosition.z > 1.0f)
+				ps.RemoveFrontObject ();
+			
+			if (Input.anyKeyDown && IsAttached == true) {
+				TouchAttachPoint ();
+			}
+			else if (Input.anyKeyDown && IsDetached == true) {
+				TouchDetachPoint ();
+			}
+			else if (Input.anyKeyDown) {
 				if (isCorrectPoly) {
-					if (ps.GetFrontObject().transform.localPosition.z < -5) {
+					if (ps.GetFrontObject ().transform.localPosition.z < -5.0f) {
 						AllFalse ();
 						scoreList [0].SetActive (true);
 						finalScore += 0;
-					}
-					else if (ps.GetFrontObject().transform.localPosition.z < -3) {
+					} else if (ps.GetFrontObject ().transform.localPosition.z < -3.0f) {
 						AllFalse ();
 						scoreList [1].SetActive (true);
 						finalScore += 1;
-					}
-					else if (ps.GetFrontObject().transform.localPosition.z < -1) {
+					} else if (ps.GetFrontObject ().transform.localPosition.z < -1.0f) {
 						AllFalse ();
 						scoreList [2].SetActive (true);
 						finalScore += 2;
-					}
-					else if (ps.GetFrontObject().transform.localPosition.z < 0.005) {
+					} else if (ps.GetFrontObject ().transform.localPosition.z < 0.005f) {
 						AllFalse ();
 						scoreList [3].SetActive (true);
 						finalScore += 3;
-					}
-					else if (ps.GetFrontObject().transform.localPosition.z < 1) {
+					} else if (ps.GetFrontObject ().transform.localPosition.z < 1.0f) {
 						AllFalse ();
 						scoreList [2].SetActive (true);
 						finalScore += 2;
 					}
 				}
+				ps.RemoveFrontObject ();
 			}
-			count = 0;
-			return;
 		}
+
 	}
 
 	void AllFalse() {

@@ -528,6 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   count: 0
   score: 0
+  ps: {fileID: 797806894}
   scoreList:
   - {fileID: 2074994415}
   - {fileID: 2074994414}
