@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/ServerTest.unity
   - enabled: 1
     path: Assets/Scene/InGameScene.unity
+  - enabled: 1
+    path: Assets/Scene/rank.unity
