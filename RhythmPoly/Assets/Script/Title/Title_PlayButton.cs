@@ -13,6 +13,6 @@ public class Title_PlayButton : MonoBehaviour {
 	}
 
     public void Push(){
-        Debug.Log("Push Play Button");
+        Application.LoadLevel("InGameScene");
     }
 }
