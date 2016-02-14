@@ -8,6 +8,7 @@ public class StartGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GetTopUser();
         SendData();
     }
     public void SendData()
@@ -26,6 +27,19 @@ public class StartGame : MonoBehaviour {
 
         }
     }
+
+    public void GetTopUser()
+    {
+        HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"gettopuser/"), onGetRequestFinished);
+        request.Send();
+    }
+
+    void onGetRequestFinished(HTTPRequest request, HTTPResponse response)
+    {
+        UserInfo.Instance.UserList = response.DataAsText;
+        Debug.Log(response.DataAsText);
+    }
+
     void OnRequestFinished(HTTPRequest request, HTTPResponse response)
     {
         UserInfo.Instance.WebId = response.DataAsText;

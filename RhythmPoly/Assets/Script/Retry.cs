@@ -73,14 +73,14 @@ public class Retry : MonoBehaviour {
             SendData();
         }
 
-
+        SetHighScoreText();
         GetTopUser();
 
 
         string name = UserInfo.Instance.Name;
         if (name.TrimEnd() == "")
         {
-            name = "User" + UserInfo.Instance.WebId;
+            name = "Me";
         }
         mynameObj.GetComponent<UILabel>().text = name;
         mypointObj.GetComponent<UILabel>().text =  num.ToString ();
