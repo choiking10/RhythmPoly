@@ -85,6 +85,21 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &210715196 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 110240, guid: 22cfbfdce23a04c438bd5a93790cd211, type: 2}
+  m_PrefabInternal: {fileID: 1989538879}
+--- !u!114 &210715203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210715196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635a6b31cf136a743b49ff6c223706fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &273634030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1178,7 @@ MonoBehaviour:
     mMethodName: Push
     mParameters: []
     oneShot: 0
+  onDoublePress: []
 --- !u!114 &1956571384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,7 +1229,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11412278, guid: a08504c0f8c6df9409e9e39feb0b4f5a, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: play_btn
   mFillCenter: 1
 --- !u!65 &1956571385
@@ -1336,7 +1352,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3001
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

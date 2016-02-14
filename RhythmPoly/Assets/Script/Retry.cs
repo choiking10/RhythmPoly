@@ -14,10 +14,16 @@ public class Retry : MonoBehaviour {
 
 
     public List<GameObject> gradeobjlist;
+    public List<GameObject> gradeNameobjlist;
 
     public GameObject mygradeObj;
+    public GameObject mynameObj;
+    public GameObject mypointObj;
+
     List<UserListInfo> userlist = new List<UserListInfo>();
     FacebookConnector fbConnector = new FacebookConnector();
+
+    int mypoint = 0;
 
     private void SetHighScoreText()
     {
@@ -28,14 +34,34 @@ public class Retry : MonoBehaviour {
             if (i >= gradeobjlist.Count)
                 break;
             gradeobjlist[i].GetComponent<UILabel>().text = userlist[i].highscore.ToString();
+            string name = "";
+            name = userlist[i].name.ToString();
+            if(name.TrimEnd() == "")
+            {
+                name = "User" + userlist[i].webid;
+            }
+
+            gradeNameobjlist[i].GetComponent<UILabel>().text = name;
         }
+        int grade = 0;
+        for (int i = 0; i < userlist.Count; ++i)
+        {
+            if (userlist[i].highscore <= UserInfo.Instance.Highscore)
+            {
+                break;
+            }
+            grade = i;
+        }
+        grade++;
+        mygradeObj.GetComponent<UILabel>().text = grade.ToString();
     }
 
     // Use this for initialization
     void Start () {
 		float f = TouchReceiver02.endScore;
 		int num = (int)f;
-		perfect.text = TouchReceiver02.perfect.ToString ();
+        mypoint = num;
+        perfect.text = TouchReceiver02.perfect.ToString ();
 		great.text = TouchReceiver02.great.ToString ();
 		good.text = TouchReceiver02.good.ToString ();
 		miss.text = TouchReceiver02.miss.ToString ();
@@ -49,6 +75,18 @@ public class Retry : MonoBehaviour {
 
 
         GetTopUser();
+
+
+        string name = UserInfo.Instance.Name;
+        if (name.TrimEnd() == "")
+        {
+            name = "User" + UserInfo.Instance.WebId;
+        }
+        mynameObj.GetComponent<UILabel>().text = name;
+        mypointObj.GetComponent<UILabel>().text =  num.ToString ();
+
+
+
     }
 
 
@@ -131,8 +169,8 @@ public class Retry : MonoBehaviour {
 
 	}
 	public void facebook() {
-		//Application.LoadLevel("InGameScene");
+        //Application.LoadLevel("InGameScene");
+        fbConnector.Login();
 
-
-	}
+    }
 }
