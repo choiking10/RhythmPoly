@@ -100,7 +100,7 @@ namespace BestHTTP.Logger
             {
                 try
                 {
-                    UnityEngine.Debug.LogError(string.Format(FormatEx, division, msg, ex != null ? ex.Message : "null", ex != null ? ex.StackTrace : "null"));
+                    //UnityEngine.Debug.LogError(string.Format(FormatEx, division, msg, ex != null ? ex.Message : "null", ex != null ? ex.StackTrace : "null"));
                 }
                 catch
                 { }

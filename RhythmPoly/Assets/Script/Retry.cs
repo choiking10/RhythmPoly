@@ -66,16 +66,18 @@ public class Retry : MonoBehaviour {
 		good.text = TouchReceiver02.good.ToString ();
 		miss.text = TouchReceiver02.miss.ToString ();
 		score.text = num.ToString ();
-        fbConnector.Init();
-        if (UserInfo.Instance.Highscore > num)
+      
+
+        SetHighScoreText();
+        if (UserInfo.Instance.Highscore <= num)
         {
             UserInfo.Instance.Highscore = num;
             SendData();
         }
-
-        SetHighScoreText();
-        GetTopUser();
-
+        else
+        {
+            GetTopUser();
+        }
 
         string name = UserInfo.Instance.Name;
         if (name.TrimEnd() == "")
@@ -152,6 +154,7 @@ public class Retry : MonoBehaviour {
     void OnRequestFinished(HTTPRequest request, HTTPResponse response)
     {
         UserInfo.Instance.WebId = response.DataAsText;
+        GetTopUser();
         Debug.Log(response.DataAsText);
     }
 
@@ -170,6 +173,7 @@ public class Retry : MonoBehaviour {
 	}
 	public void facebook() {
         //Application.LoadLevel("InGameScene");
+        fbConnector.Init();
         fbConnector.Login();
 
     }
