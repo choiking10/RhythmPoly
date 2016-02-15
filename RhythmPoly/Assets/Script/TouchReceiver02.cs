@@ -56,13 +56,14 @@ public class TouchReceiver02 : MonoBehaviour
         GameObject front = ps.GetFrontObject();
         if (front != null && front.transform.localPosition.z >= 0.3f)
         {
+			combo = 0;
+			miss++;
             ps.RemoveFrontObject();
             AllFalse();
             scoreList[0].SetActive(true);
             finalScore += 0;
         }
-
-        if (front != null && !IsAttached && !IsDetached)
+        else if (front != null && !IsAttached && !IsDetached)
         {
 			if (Input.anyKeyDown) {
 				if (isCorrectPoly) {
