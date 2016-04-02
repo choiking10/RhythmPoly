@@ -8,8 +8,8 @@ public class PolyMaker : MonoBehaviour {
     public int deltime;
     void Start()
     {
-        sw = File.CreateText(Application.dataPath + "/test");
-        Debug.Log(Application.dataPath);
+        //sw = File.CreateText(Application.dataPath + "/test");
+        //Debug.Log(Application.dataPath);
     }
 	
 	// Update is called once per frame
