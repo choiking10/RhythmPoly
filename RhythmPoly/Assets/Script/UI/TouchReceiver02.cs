@@ -9,9 +9,11 @@ public class TouchReceiver02 : MonoBehaviour
     public int score = 0;
     public PolygonSpawn ps;
     public Polygon userPoly;
+    public LevelDisign level;
     public static float finalScore;
     public static int endScore;
     public Text scorelabel;
+    public Text levelNumberLabel;
 
     //맞힌 개수
     public static int match_number;
@@ -53,6 +55,7 @@ public class TouchReceiver02 : MonoBehaviour
                 finalScore += scorevalue;
                 front.GetComponent<PolygonMovement>().perfactflag = true;
                 match_number++;
+                level.matchPoly();
                 ps.RemoveFrontObject();
                 Debug.Log("Yeah!");
                 if (match_number > stageUp[0])
@@ -79,6 +82,7 @@ public class TouchReceiver02 : MonoBehaviour
 
         endScore = (int)finalScore;
         scorelabel.text = endScore.ToString();
+        levelNumberLabel.text = ""+(level.getLevel() + 1);
     }
 
 

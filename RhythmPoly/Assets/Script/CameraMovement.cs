@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-class CameraMovement: MonoBehaviour 
+public class CameraMovement: MonoBehaviour 
 {
     public float speed;
     public Vector3 limit;
@@ -33,7 +33,7 @@ class CameraMovement: MonoBehaviour
     {
         return new Vector3( Random.Range(-limit.x, limit.x),
                           Random.Range(-limit.y, limit.y),
-                          Random.Range(-limit.z, limit.z)); ;
+                          Random.Range(-limit.z, limit.z)); 
     }
 
 }
