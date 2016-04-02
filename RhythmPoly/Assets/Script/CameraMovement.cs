@@ -12,7 +12,7 @@ class CameraMovement: MonoBehaviour
         target = RandomGeneration();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 tmp = transform.localEulerAngles;
         if (tmp.x >= 180) tmp.x -= 360;

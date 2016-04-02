@@ -31,12 +31,7 @@ public class PolygonSpawn : MonoBehaviour
         Debug.Log("test :" + datas); 
         Invoke("MusicStart", 1f);
 	}
-	// Update is called once per frame
-	void Update () {
-
-        if (idx >= datas.Length) return;
-        if (datas[idx].timeline - datas[idx].speed * 1000 < delta) CreatePolygon();
-	}
+	
     void MusicStart()
     {
         delta = 0;
@@ -45,6 +40,9 @@ public class PolygonSpawn : MonoBehaviour
     void FixedUpdate()
     {
         delta += (int)(Time.fixedDeltaTime * 1000f);
+
+        if (idx >= datas.Length) return;
+        if (datas[idx].timeline - datas[idx].speed * 1000 < delta) CreatePolygon();
     }
     
     void CreatePolygon()
