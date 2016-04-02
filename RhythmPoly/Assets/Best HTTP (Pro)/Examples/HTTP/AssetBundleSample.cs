@@ -116,7 +116,7 @@ public sealed class AssetBundleSample : MonoBehaviour
                     status = "AssetBundle downloaded!";
 #endif
 #if UNITY_5_2
-                    AssetBundleCreateRequest async = AssetBundle.CreateFromMemory(request.Response.Data);
+                    AssetBundleCreateRequest async = AssetBundle.LoadFromMemoryAsync(request.Response.Data);
 #else
                     // Start creating the downloaded asset bundle
                     AssetBundleCreateRequest async = AssetBundle.LoadFromMemoryAsync(request.Response.Data);
