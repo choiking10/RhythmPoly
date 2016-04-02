@@ -6,10 +6,7 @@ using RhythmPoly.Common;
 using System.Collections.Generic;
 public class Retry : MonoBehaviour {
 
-	public UILabel perfect;
-	public UILabel great;
-	public UILabel good;
-	public UILabel miss;
+	public UILabel match_number;
 	public UILabel score;
 
 
@@ -61,10 +58,7 @@ public class Retry : MonoBehaviour {
 		float f = TouchReceiver02.endScore;
 		int num = (int)f;
         mypoint = num;
-        perfect.text = TouchReceiver02.perfect.ToString ();
-		great.text = TouchReceiver02.great.ToString ();
-		good.text = TouchReceiver02.good.ToString ();
-		miss.text = TouchReceiver02.miss.ToString ();
+		match_number.text = TouchReceiver02.match_number.ToString ();
 		score.text = num.ToString ();
       
 
@@ -161,14 +155,10 @@ public class Retry : MonoBehaviour {
 
     public void retry() {
 		//Application.LoadLevel("InGameScene");
-
-			TouchReceiver02.finalScore = 0;
-			TouchReceiver02.endScore = 0;
-			TouchReceiver02.miss = 0;
-			TouchReceiver02.good = 0;
-			TouchReceiver02.great = 0;
-			TouchReceiver02.perfect = 0;
-			Application.LoadLevel("InGameScene");
+		TouchReceiver02.finalScore = 0;
+		TouchReceiver02.endScore = 0;
+		TouchReceiver02.match_number = 0;
+		Application.LoadLevel("InGameScene");
 
 	}
 	public void facebook() {

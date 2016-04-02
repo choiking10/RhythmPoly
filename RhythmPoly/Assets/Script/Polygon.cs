@@ -6,17 +6,20 @@ public class Polygon : MonoBehaviour {
 	public List<GameObject> poly;
 	public int lastPoly;
 	static GameObject nowPoly;
-	// Use this for initialization
-	void Start () {
+
+	void Start ()
+	{
 		for (int i = 1; i < 4; i++)
 			poly [i].active = false;
 		nowPoly = poly [0];
 	}
+
     void AllFalse()
     {
         for (int i = 0; i < 4; i++)
             poly[i].active = false;
     }
+
     public void AttachRoutine()
     {
         Debug.Log("attach");
@@ -48,6 +51,7 @@ public class Polygon : MonoBehaviour {
         
         TouchReceiver.IsAttached = false;
     }
+
     public void DetachRoutine()
     {
         if (nowPoly == poly[1])
@@ -74,7 +78,7 @@ public class Polygon : MonoBehaviour {
             lastPoly = 5;
             nowPoly = poly[2];
         }
+
         TouchReceiver.IsDetached = false;
     }
-	
 }
