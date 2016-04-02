@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-using BestHTTP;
 using System;
-using RhythmPoly.Common;
 using System.Collections.Generic;
 public class StartGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GetTopUser();
         SendData();
     }
     public void SendData()
-    {
+    {/*
         try
         {
-            HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"setuser/"), HTTPMethods.Post, OnRequestFinished);
             request.AddField("deviceid", UserInfo.Instance.DeviceID.ToString());
             request.AddField("facebookid", UserInfo.Instance.Id.ToString());
             request.AddField("name", UserInfo.Instance.Name.ToString());
@@ -25,9 +21,9 @@ public class StartGame : MonoBehaviour {
         catch (Exception e)
         {
 
-        }
+        }*/
     }
-
+    /*
     public void GetTopUser()
     {
         HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"gettopuser/"), onGetRequestFinished);
@@ -48,5 +44,5 @@ public class StartGame : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 	
-	}
+	}*/
 }

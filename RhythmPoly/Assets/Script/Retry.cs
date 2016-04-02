@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using BestHTTP;
 using System;
-using RhythmPoly.Common;
 using System.Collections.Generic;
 public class Retry : MonoBehaviour {
 
@@ -17,13 +15,12 @@ public class Retry : MonoBehaviour {
     public GameObject mynameObj;
     public GameObject mypointObj;
 
-    List<UserListInfo> userlist = new List<UserListInfo>();
-    FacebookConnector fbConnector = new FacebookConnector();
-
+    
     int mypoint = 0;
 
     private void SetHighScoreText()
     {
+        /*
         userlist = ParseListInfo(UserInfo.Instance.UserList);
 
         for (int i = 0; i < userlist.Count; ++i)
@@ -50,7 +47,7 @@ public class Retry : MonoBehaviour {
             grade = i;
         }
         grade++;
-        mygradeObj.GetComponent<UILabel>().text = grade.ToString();
+        mygradeObj.GetComponent<UILabel>().text = grade.ToString();*/
     }
 
     // Use this for initialization
@@ -63,17 +60,16 @@ public class Retry : MonoBehaviour {
       
 
         SetHighScoreText();
+        /*
         if (UserInfo.Instance.Highscore <= num)
         {
             UserInfo.Instance.Highscore = num;
-            SendData();
         }
         else
         {
-            GetTopUser();
         }
 
-        string name = UserInfo.Instance.Name;
+        string name = UserInfo.Instance.Name;*/
         if (name.TrimEnd() == "")
         {
             name = "Me";
@@ -84,21 +80,7 @@ public class Retry : MonoBehaviour {
 
 
     }
-
-
-    public void GetTopUser()
-    {
-        HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"gettopuser/"), onGetRequestFinished);
-        request.Send();
-    }
-
-    void onGetRequestFinished(HTTPRequest request, HTTPResponse response)
-    {
-        UserInfo.Instance.UserList = response.DataAsText;
-        SetHighScoreText();
-        Debug.Log(response.DataAsText);
-    }
-
+    /*
     public List<UserListInfo> ParseListInfo(string var)
     {
         List<string> templist = new List<string>();
@@ -125,32 +107,8 @@ public class Retry : MonoBehaviour {
         }
 
         return userlist;
-    }
+    }*/
 
-
-
-    public void SendData()
-    {
-        try
-        {
-            HTTPRequest request = new HTTPRequest(new Uri(GameInfo.ServerUrl + @"setuser/"), HTTPMethods.Post, OnRequestFinished);
-            request.AddField("deviceid", UserInfo.Instance.DeviceID.ToString());
-            request.AddField("facebookid", UserInfo.Instance.Id.ToString());
-            request.AddField("name", UserInfo.Instance.Name.ToString());
-            request.AddField("highscore", UserInfo.Instance.Highscore.ToString());
-            request.Send();
-        }
-        catch (Exception e)
-        {
-
-        }
-    }
-    void OnRequestFinished(HTTPRequest request, HTTPResponse response)
-    {
-        UserInfo.Instance.WebId = response.DataAsText;
-        GetTopUser();
-        Debug.Log(response.DataAsText);
-    }
 
 
     public void retry() {
@@ -163,8 +121,8 @@ public class Retry : MonoBehaviour {
 	}
 	public void facebook() {
         //Application.LoadLevel("InGameScene");
-        fbConnector.Init();
-        fbConnector.Login();
+        //fbConnector.Init();
+        //fbConnector.Login();
 
     }
 }
