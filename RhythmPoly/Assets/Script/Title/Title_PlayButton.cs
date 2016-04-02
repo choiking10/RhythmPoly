@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Title_PlayButton : MonoBehaviour {
+    public GameObject loading;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,6 +15,16 @@ public class Title_PlayButton : MonoBehaviour {
 	}
 
     public void Push(){
-        Application.LoadLevel("InGameScene");
+        loading.SetActive(true);
+        StartCoroutine(Load());
+    }
+    IEnumerator Load()
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync("InGameScene");
+
+        while (!async.isDone)
+        {
+            yield return true;
+        }
     }
 }
