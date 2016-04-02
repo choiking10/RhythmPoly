@@ -158,8 +158,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: /Users/yunho/Desktop/work_data/uniton/keys/user.keystore
+  AndroidKeyaliasName: poly
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 0
