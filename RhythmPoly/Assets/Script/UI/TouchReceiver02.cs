@@ -13,7 +13,6 @@ public class TouchReceiver02 : MonoBehaviour
     public static float finalScore;
     public static int endScore;
     public Text scorelabel;
-    public Text levelNumberLabel;
 
     //맞힌 개수
     public static int match_number;
@@ -82,7 +81,6 @@ public class TouchReceiver02 : MonoBehaviour
 
         endScore = (int)finalScore;
         scorelabel.text = endScore.ToString();
-        levelNumberLabel.text = ""+(level.getLevel() + 1);
     }
 
 

@@ -54,6 +54,7 @@ public class Polygon : MonoBehaviour {
 
     public void DetachRoutine()
     {
+        Debug.Log("Detach!");
         if (nowPoly == poly[1])
         {
             AllFalse();

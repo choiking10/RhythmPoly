@@ -16,26 +16,27 @@ public class LevelDisign : MonoBehaviour
     public CameraMovement cameraMV;
 
     void Start(){
+
+        matchLeveling = new int[20];
+        limitAngLevel = new int[20];
+        spawnSpeed = new float[20];
+        fallingSpeed = new float[20];
+        cameraLimit = new Vector3[20];
+
+        for (int i = 0; i < matchLeveling.Length; i++)
+            matchLeveling[i] = 5 + i * 5;
+         for (int i = 0; i < limitAngLevel.Length; i++)
+            limitAngLevel[i] = 2 +  i/6;
+        matchLeveling[0] = 1;
+        for (int i = 0; i < spawnSpeed.Length; i++)
+            spawnSpeed[i] = 3 - (i/2 * 0.25f);
+
+        cameraLimit[0] = new Vector3(0, 0, 0);
+        cameraLimit[1] = new Vector3(0, 0, 0);
+
+        for (int i = 2; i < cameraLimit.Length; i++)
+            cameraLimit[i] = new Vector3(20 + 10 * ((i - 2) / 3),20 + 10 * ((i - 2) / 3),20 + 10 * ((i - 2) / 3));
         
-        matchLeveling    = new int[]{5  ,10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50};
-        limitAngLevel    = new int[]{1  ,2  ,3  ,3 , 3  ,4  ,4  ,4  ,4  ,4};
-
-        spawnSpeed      = new float[] { 3f, 3f, 2.75f, 2.75f, 2.5f, 2.5f, 2f, 1.5f, 1f, 1f };
-        fallingSpeed    = new float[] { 3f, 3f, 2.75f, 2.75f, 2.5f, 2.5f, 2f, 1.5f, 1f, 1f };
-
-
-        cameraLimit = new Vector3[]{
-            new Vector3(0,0,0),
-            new Vector3(0,0,0),
-            new Vector3(10,10,10),
-            new Vector3(10,10,10),
-            new Vector3(20,20,20),
-            new Vector3(20,20,20),
-            new Vector3(30,30,30),
-            new Vector3(30,30,30),
-            new Vector3(40,40,40),
-            new Vector3(40,40,40)
-        };
         plevel = 0;
 
         commit();
