@@ -4,7 +4,7 @@ using System.Collections;
 public class BackgroundLogic : MonoBehaviour
 {
     public Transform bg;
-    public SpriteRenderer order;    //bg
+    public SpriteRenderer[] order;    //bg
     
     public Transform pat;   // pattern
 
@@ -27,7 +27,6 @@ public class BackgroundLogic : MonoBehaviour
 
     public SpriteRenderer[] BackgroundColors = new SpriteRenderer[2];
 
-
     // 랜덤 색깔 세팅해줌
     void SetRandomColor() {
         int idx = Random.Range(0, 10);
@@ -41,7 +40,10 @@ public class BackgroundLogic : MonoBehaviour
             }
         }
 
-        order.color = colors[idx];
+        for (int i = 0; i < order.Length; i++)
+        {
+            order[i].color = colors[idx];
+        }
         pat_sr.color = colors[idx];
     }
 
@@ -81,15 +83,23 @@ public class BackgroundLogic : MonoBehaviour
 
         if (y < -31)
         {
-            order.sortingOrder = 2;
+            for (int i =0; i< order.Length; i++) {
+                order[i].sortingOrder = 2;
+            }
             y = 29;
             SetRandomColor();
         }
-        else if (y < -11) {
-            order.sortingOrder = 0;
+        else if (y < -10) {
+            for (int i = 0; i < order.Length; i++)
+            {
+                order[i].sortingOrder = 0;
+            }
         }
         else if (y < 9) {
-            order.sortingOrder = 1;
+            for (int i = 0; i < order.Length; i++)
+            {
+                order[i].sortingOrder = 1;
+            }
         }
         Vector3 pos = new Vector3(0, y - 0.1f, 0);
      //   Debug.Log(pos);
