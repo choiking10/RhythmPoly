@@ -16,6 +16,8 @@ public class TouchReceiver02 : MonoBehaviour
 
 	//맞힌 개수
 	public static int match_number;
+	//틀리다는 기준
+	public float falsecutline = -1f;
 	//맞다는 기준
 	public float cutline = -0.15f;
 	//맞을때마다 점수
@@ -50,9 +52,9 @@ public class TouchReceiver02 : MonoBehaviour
 	{
         GameObject front = ps.GetFrontObject();
         if (front != null && front.transform.localPosition.z >= 0.3f)
-        {
-			//gameover
+		{
             ps.RemoveFrontObject();
+			Application.LoadLevel("rank");
         }
         else if (front != null && !IsAttached && !IsDetached)
         {
@@ -61,8 +63,9 @@ public class TouchReceiver02 : MonoBehaviour
 
                     if (front.transform.localPosition.z > -3f)
                     {
-                        ps.RemoveFrontObject();
-						if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < cutline)
+						if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < falsecutline)
+							Application.LoadLevel("rank");
+						else if (front.transform.localPosition.z < cutline)
                         {
 							finalScore += scorevalue;
 							front.GetComponent<PolygonMovement>().perfactflag = true;
@@ -74,8 +77,8 @@ public class TouchReceiver02 : MonoBehaviour
                         }
                         else if (front.transform.localPosition.z < 0.3f)
                         {
-                            //gameover
 							ps.RemoveFrontObject();
+							Application.LoadLevel("rank");
                         }
                     }
 				}
