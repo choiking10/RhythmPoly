@@ -6,7 +6,7 @@ using RhythmPoly.Common;
 using System.Collections.Generic;
 public class Retry : MonoBehaviour {
 
-	public UILabel match_number;
+	//public UILabel match_number;
 	public UILabel score;
 
 
@@ -58,7 +58,7 @@ public class Retry : MonoBehaviour {
 		float f = TouchReceiver02.endScore;
 		int num = (int)f;
         mypoint = num;
-		match_number.text = TouchReceiver02.match_number.ToString ();
+		//match_number.text = TouchReceiver02.match_number.ToString ();
 		score.text = num.ToString ();
       
 

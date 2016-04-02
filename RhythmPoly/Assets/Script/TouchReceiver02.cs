@@ -16,20 +16,18 @@ public class TouchReceiver02 : MonoBehaviour
 
 	//맞힌 개수
 	public static int match_number;
-	//틀리다는 기준
-	public float falsecutline = -1f;
 	//맞다는 기준
-	public float cutline = -0.15f;
+	public float cutline = -0.2f;
 	//맞을때마다 점수
-	public int scorevalue = 50;
+	public int scorevalue = 10;
 	//stage올리는 기준
-	public int[] stageUp;
+	public int[] stageUp = new int[10];
 
 	bool isCorrectPoly = true;
 
     void Start()
     {
-		stageUp [0] = 1000;
+		stageUp [0] = 20;
     }
     // Add Point
     public void TouchAttachPoint()
@@ -59,30 +57,19 @@ public class TouchReceiver02 : MonoBehaviour
         else if (front != null && !IsAttached && !IsDetached)
         {
 			if (Input.anyKeyDown) {
-				if (isCorrectPoly) {
-
-                    if (front.transform.localPosition.z > -3f)
-                    {
-						if (front.GetComponent<PolygonProperty>().kind != userPoly.lastPoly || front.transform.localPosition.z < falsecutline)
-							Application.LoadLevel("rank");
-						else if (front.transform.localPosition.z < cutline)
-                        {
-							finalScore += scorevalue;
-							front.GetComponent<PolygonMovement>().perfactflag = true;
-							match_number++;
-							if (match_number > stageUp [0])
-							{
-								Debug.Log("stage up!!");
-							}
-                        }
-                        else if (front.transform.localPosition.z < 0.3f)
-                        {
-							ps.RemoveFrontObject();
-							Application.LoadLevel("rank");
-                        }
-                    }
+				if (front.GetComponent<PolygonProperty> ().kind == userPoly.lastPoly && front.transform.localPosition.z > cutline) {
+					finalScore += scorevalue;
+					front.GetComponent<PolygonMovement> ().perfactflag = true;
+					match_number++;
+					if (match_number > stageUp [0]) {
+						Debug.Log ("stage up!!");
+					}
 				}
-			}
+				else {
+					ps.RemoveFrontObject ();
+					Application.LoadLevel ("rank");
+				}
+			} 
 		}
         IsAttached = false;
         IsDetached = false;
