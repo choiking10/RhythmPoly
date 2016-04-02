@@ -132,6 +132,14 @@ Prefab:
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8205912, guid: d6fa73b7f6280454ca490912d5c9ba01, type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205912, guid: d6fa73b7f6280454ca490912d5c9ba01, type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1.053
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6fa73b7f6280454ca490912d5c9ba01, type: 2}
   m_IsPrefabParent: 0
@@ -971,7 +979,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bg: {fileID: 435253728}
-  order: {fileID: 1413317949}
+  order:
+  - {fileID: 0}
   pat: {fileID: 2036854807}
   pat_sr: {fileID: 231703791}
   sprites:
@@ -1026,7 +1035,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bg: {fileID: 522347267}
-  order: {fileID: 1024931846}
+  order:
+  - {fileID: 0}
   pat: {fileID: 1617903411}
   pat_sr: {fileID: 1337842766}
   sprites:
@@ -1058,7 +1068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &561970330
 Transform:
   m_ObjectHideFlags: 0
@@ -2251,7 +2261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bg: {fileID: 1046250263}
-  order: {fileID: 740363365}
+  order:
+  - {fileID: 0}
   pat: {fileID: 1315469129}
   pat_sr: {fileID: 1938601072}
   sprites:
@@ -4000,6 +4011,57 @@ MonoBehaviour:
   mAtlas: {fileID: 11440806, guid: a08504c0f8c6df9409e9e39feb0b4f5a, type: 2}
   mSpriteName: KakaoTalk_Photo_2016-02-14-07-02-39
   mFillCenter: 1
+--- !u!1001 &1813340005
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 496670, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055026, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_ClearFlags
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 177924, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11416560, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1909013114
 GameObject:
   m_ObjectHideFlags: 0
