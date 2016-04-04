@@ -29,8 +29,10 @@ public class LevelDisign : MonoBehaviour
             limitAngLevel[i] = 2 +  i/6;
         matchLeveling[0] = 1;
         for (int i = 0; i < spawnSpeed.Length; i++)
-            spawnSpeed[i] = 3 - (i/2 * 0.25f);
-
+        {
+            spawnSpeed[i] = 3 - (i / 2 * 0.25f);
+            fallingSpeed[i] = 3 - (i / 2 * 0.25f);
+        }
         cameraLimit[0] = new Vector3(0, 0, 0);
         cameraLimit[1] = new Vector3(0, 0, 0);
 

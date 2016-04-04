@@ -27,6 +27,7 @@ public class PolygonSpawn : MonoBehaviour
 
     void Start () {
         spawnList = new Queue();
+        angspeed = 1;
         ppreIdx = 0;
         Invoke("MusicStart", 1f);
 	}
