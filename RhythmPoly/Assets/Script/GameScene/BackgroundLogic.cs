@@ -50,7 +50,10 @@ public class BackgroundLogic : MonoBehaviour
     // Use this for initialization
 	void Start () {
         SetRandomColor();
-	}
+
+        int idx = Random.Range(0, 5);
+        pat_sr.sprite = sprites[idx];
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -64,12 +67,19 @@ public class BackgroundLogic : MonoBehaviour
     IEnumerator SleepPat(float s)
     {
         float y = pat.localPosition.y;
-        if (!(bg.localPosition.y > -11))
+
+        if (bg.localPosition.y < 0)
             y -= 0.4f;
-        if ((-11 > bg.localPosition.y) && (bg.localPosition.y > -11.2)) {
+        else {
+            y = 15;
+        }
+
+        if ((0.0f > bg.localPosition.y) && (bg.localPosition.y > -0.1f)
+            || (-6.0f > bg.localPosition.y) && (bg.localPosition.y > -6.1f))
+        {
             int idx = Random.Range(0, 5);
             pat_sr.sprite = sprites[idx];
-            y = 20;
+            y = 15;
         }
 
         Vector3 pos = new Vector3(0, y, 0);
@@ -81,21 +91,24 @@ public class BackgroundLogic : MonoBehaviour
     {
         float y = bg.localPosition.y;
 
-        if (y < -31)
+        if (y < -17)
         {
-            for (int i =0; i< order.Length; i++) {
+            y = 22;
+            bg.localPosition = new Vector3(0, y, 0);
+            SetRandomColor();
+
+            for (int i = 0; i < order.Length; i++)
+            {
                 order[i].sortingOrder = 2;
             }
-            y = 29;
-            SetRandomColor();
         }
-        else if (y < -10) {
+        else if (y < -2) {
             for (int i = 0; i < order.Length; i++)
             {
                 order[i].sortingOrder = 0;
             }
         }
-        else if (y < 9) {
+        else if (y < 7) {
             for (int i = 0; i < order.Length; i++)
             {
                 order[i].sortingOrder = 1;
