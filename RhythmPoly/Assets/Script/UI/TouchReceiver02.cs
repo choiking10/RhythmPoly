@@ -65,7 +65,7 @@ public class TouchReceiver02 : MonoBehaviour
             else
             {
                 ps.RemoveFrontObject();
-                Application.LoadLevel("rank");
+                Application.LoadLevel("endScene");
             }
         }
 
@@ -76,7 +76,7 @@ public class TouchReceiver02 : MonoBehaviour
         if (front != null && front.transform.localPosition.z >= 0.3f)       //
         {
             ps.RemoveFrontObject();
-            Application.LoadLevel("rank");
+            Application.LoadLevel("endScene");
         }
 
         endScore = (int)finalScore;
