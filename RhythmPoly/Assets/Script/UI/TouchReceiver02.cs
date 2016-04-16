@@ -27,6 +27,8 @@ public class TouchReceiver02 : MonoBehaviour
 
     void Start()
     {
+    	finalScore = 0;
+    	endScore = 0;
         stageUp = new int[10];
         stageUp[0] = 20;
     }

@@ -110,8 +110,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5d8d13748e0cc4f5bb8e4fddd51aad02, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: a88696ccad2c343feb5c19d1a8b0f3e9, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -3994,9 +3994,55 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 113712, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11416560, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8dd20f08b55a18048929bb5dac3e1e83, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1842010477
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 465386, guid: 9ef503a84a67919469748ad88261e423, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9ef503a84a67919469748ad88261e423, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1909013114
 GameObject:
