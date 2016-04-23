@@ -33,8 +33,8 @@ public class LevelDisign : MonoBehaviour
             spawnSpeed[i] = 3 - (i / 2 * 0.25f);
             fallingSpeed[i] = 3 - (i / 2 * 0.25f);
         }
-        cameraLimit[0] = new Vector3(0, 0, 0);
-        cameraLimit[1] = new Vector3(0, 0, 0);
+        cameraLimit[0] = new Vector3(10, 10, 10);
+        cameraLimit[1] = new Vector3(10, 10, 10);
 
         for (int i = 2; i < cameraLimit.Length; i++)
             cameraLimit[i] = new Vector3(20 + 10 * ((i - 2) / 3),20 + 10 * ((i - 2) / 3),20 + 10 * ((i - 2) / 3));

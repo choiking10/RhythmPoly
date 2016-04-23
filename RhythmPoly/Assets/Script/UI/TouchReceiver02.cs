@@ -17,9 +17,9 @@ public class TouchReceiver02 : MonoBehaviour
     //맞힌 개수
     public static int match_number;
     //맞다는 기준
-    public float cutline = -0.2f;
+    public float cutline = 0f;
     //맞을때마다 점수
-    public int scorevalue = 10;
+    public int scorevalue = 1;
     //stage올리는 기준
     public int[] stageUp;
 
@@ -50,13 +50,13 @@ public class TouchReceiver02 : MonoBehaviour
         //아무곳이나 터치했을 시
         if (front != null)
         {
-            if (front.GetComponent<PolygonProperty>().kind == userPoly.lastPoly && front.transform.localPosition.z > cutline)
+            if (front.GetComponent<PolygonProperty>().kind == userPoly.lastPoly )
             {
                 Debug.Log("hello");
                 finalScore += scorevalue;
-                front.GetComponent<PolygonMovement>().perfactflag = true;
                 match_number++;
                 level.matchPoly();
+                front.AddComponent<PolygonAccpet>();
                 ps.RemoveFrontObject();
                 Debug.Log("Yeah!");
                 if (match_number > stageUp[0])
@@ -75,7 +75,7 @@ public class TouchReceiver02 : MonoBehaviour
     void FixedUpdate()
     {
         GameObject front = ps.GetFrontObject();
-        if (front != null && front.transform.localPosition.z >= 0.3f)       //
+        if (front != null && front.transform.localPosition.z >= userPoly.transform.localPosition.z)       //
         {
             ps.RemoveFrontObject();
             Application.LoadLevel("endScene");

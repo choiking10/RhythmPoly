@@ -59,7 +59,7 @@ public class PolygonMovement : MonoBehaviour {
     {
         gameObject.transform.localPosition += new Vector3(0, 0, SpeedFunction());
         gameObject.transform.localEulerAngles += new Vector3(0, 0, AngleSpeedFunction());
-        gameObject.transform.localScale = new Vector3(1 + ScaleSpeedFunction(), 1 + ScaleSpeedFunction(), 1);
+        //gameObject.transform.localScale = new Vector3(1 + ScaleSpeedFunction(), 1 + ScaleSpeedFunction(), 1);
         /* Debug code */
         tnu += Time.fixedDeltaTime;
     }

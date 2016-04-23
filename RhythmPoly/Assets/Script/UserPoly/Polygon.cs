@@ -12,6 +12,7 @@ public class Polygon : MonoBehaviour {
 		for (int i = 1; i < 4; i++)
 			poly [i].active = false;
 		nowPoly = poly [0];
+        lastPoly = 3;
 	}
 
     void AllFalse()

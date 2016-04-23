@@ -116,6 +116,7 @@ public class Retry : MonoBehaviour {
 		TouchReceiver02.finalScore = 0;
 		TouchReceiver02.endScore = 0;
 		TouchReceiver02.match_number = 0;
+        
 		Application.LoadLevel("InGameScene");
 
 	}
