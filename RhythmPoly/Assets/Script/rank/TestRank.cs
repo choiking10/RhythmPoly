@@ -23,6 +23,17 @@ public class TestRank : MonoBehaviour {
             }
         });
     }
+    public void LeaderBoard()
+    {
+        PlayGamesPlatform.Instance.ShowLeaderboardUI("CggIjvO18kcQAhAA");
+    }
+    public void ReportLeaderBoard()
+    {
+        Social.ReportScore(100, "CggIjvO18kcQAhAA", (bool success) =>
+        {
+            // handle success or failure
+        });
+    }
 	// Update is called once per frame
 	void Update () {
 	
