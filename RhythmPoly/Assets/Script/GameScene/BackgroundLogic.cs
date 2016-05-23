@@ -146,7 +146,7 @@ public class BackgroundLogic : MonoBehaviour
         }
 
         // 0.2 만큼 아래로 내려감
-        Vector3 pos = new Vector3(0, y - 0.2f, 0);
+        Vector3 pos = new Vector3(0, y - 0.1f, 0);
      //   Debug.Log(pos);
         yield return new WaitForSeconds(s);
         bg.localPosition = pos;
