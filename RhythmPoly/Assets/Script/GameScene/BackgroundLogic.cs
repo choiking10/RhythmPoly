@@ -4,6 +4,8 @@ using System.Collections;
 public class BackgroundLogic : MonoBehaviour
 {
     public Transform bg;
+    public Transform downbg;
+
     public SpriteRenderer[] order;    //bg
     
     public Transform pat;   // pattern
@@ -18,23 +20,40 @@ public class BackgroundLogic : MonoBehaviour
                                  new Color((float)0x7b/0xff, (float)0xbd/0xff, (float)0xef/0xff),
                                  new Color((float)0xff/0xff, (float)0x99/0xff, (float)0x66/0xff),
                                  new Color((float)0x9d/0xff, (float)0xed/0xff, (float)0xbf/0xff),
-                                 new Color((float)0xf9/0xff, (float)0x41/0xff, (float)0x71/0xff), 
-                                 new Color((float)0x6d/0xff, (float)0x32/0xff, (float)0x29/0xff), 
-                                 new Color((float)0xae/0xff, (float)0xa7/0xff, (float)0xc1/0xff), 
-                                 new Color((float)0x67/0xff, (float)0x99/0xff, (float)0x7f/0xff), 
-                                 new Color((float)0xff/0xff, (float)0xce/0xff, (float)0x55/0xff)
+                                 new Color((float)0xf4/0xff, (float)0xac/0xff, (float)0xda/0xff), 
+                                 new Color((float)0xab/0xff, (float)0xaa/0xff, (float)0xec/0xff), 
+                                 new Color((float)0x62/0xff, (float)0xcc/0xff, (float)0x86/0xff), 
+                                 new Color((float)0x56/0xff, (float)0x7c/0xff, (float)0x89/0xff), 
+                                 new Color((float)0xfc/0xff, (float)0xea/0xff, (float)0x9f/0xff)
                              };
 
     public SpriteRenderer[] BackgroundColors = new SpriteRenderer[2];
 
+    // downbg localposition 가져옴
+    float GetDownBg() {
+        return downbg.localPosition.y;
+    }
+    // 색깔 대충 같은지 체크해준다.
+    bool EqaulIsColored(Color a, Color b) {
+        if (((int)((a.r*0xff) / 0x10) == (int)((b.r*0xff) / 0x10))
+            && ((int)((a.g*0xff) / 0x10) == (int)((b.g*0xff) / 0x10))
+            && ((int)((a.b*0xff) / 0x10) == (int)((b.b*0xff) / 0x10))) {
+            return true;
+        }
+        return false;
+    }
     // 랜덤 색깔 세팅해줌
     void SetRandomColor() {
         int idx = Random.Range(0, 10);
 
         for (int i = 0; i < 2; i++)
         {
-            if (colors[idx].Equals(BackgroundColors[i].color))
-            {
+            //if (colors[idx].Equals(BackgroundColors[i].color))
+            //{
+            //    idx = Random.Range(0, 10);
+            //    i = 0;
+            //}
+            if (EqaulIsColored(colors[idx], BackgroundColors[i].color)) {
                 idx = Random.Range(0, 10);
                 i = 0;
             }
@@ -64,18 +83,23 @@ public class BackgroundLogic : MonoBehaviour
         //       this.transform.position = pos;
 	}
 
+    // 패턴 s 초마다 호출
     IEnumerator SleepPat(float s)
     {
         float y = pat.localPosition.y;
-
-        if (bg.localPosition.y < 0)
-            y -= 0.4f;
-        else {
+     
+        // 부모 배경이 -15 이하이면 패턴을 아래로 안보이게 만든다.   
+        if (bg.localPosition.y < -15) {
+            y = -32;
+        } else if (bg.localPosition.y < 0) {    // 부모 배경이 화면에 보이면 아래로 조금씩 내려가게 하자
+            y -= 0.5f;
+        } else {                                // 부모 배경이 위에 있을 때는 패턴이 아래로 내려가지 않도록 고정
             y = 15;
         }
 
-        if ((0.0f > bg.localPosition.y) && (bg.localPosition.y > -0.1f)
-            || (-6.0f > bg.localPosition.y) && (bg.localPosition.y > -6.1f))
+        // 배경이 특정 위치에 도달했을 때 패턴을 랜덤으로 결정해준다.
+        if ((0.0f > bg.localPosition.y) && (bg.localPosition.y > -0.2f)
+            || (-6.0f > bg.localPosition.y) && (bg.localPosition.y > -6.2f))
         {
             int idx = Random.Range(0, 5);
             pat_sr.sprite = sprites[idx];
@@ -87,34 +111,42 @@ public class BackgroundLogic : MonoBehaviour
         yield return new WaitForSeconds(s);
         pat.localPosition = pos;
     }
+
+    // 배경 s 초마다 호출
     IEnumerator SleepBg(float s)
     {
         float y = bg.localPosition.y;
 
-        if (y < -17)
+        // 아래 bg + 12에 위치시켜준다.
+        if (y < -18)
         {
-            y = 22;
+            //y = 22;
+            y = GetDownBg() + 12;
             bg.localPosition = new Vector3(0, y, 0);
             SetRandomColor();
 
+            // 맨 위에 있기 때문에 맨 위로 올려줌
             for (int i = 0; i < order.Length; i++)
             {
                 order[i].sortingOrder = 2;
             }
         }
-        else if (y < -2) {
+        else if (y < -6) {
+            // 아래 배경이기 때문에 정렬을 맨 밑
             for (int i = 0; i < order.Length; i++)
             {
                 order[i].sortingOrder = 0;
             }
         }
-        else if (y < 7) {
+        else if (y < 6) {
             for (int i = 0; i < order.Length; i++)
             {
                 order[i].sortingOrder = 1;
             }
         }
-        Vector3 pos = new Vector3(0, y - 0.1f, 0);
+
+        // 0.2 만큼 아래로 내려감
+        Vector3 pos = new Vector3(0, y - 0.2f, 0);
      //   Debug.Log(pos);
         yield return new WaitForSeconds(s);
         bg.localPosition = pos;
