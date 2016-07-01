@@ -2,9 +2,12 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class TouchReceiver02 : MonoBehaviour
 {
+    public GameObject gameOverUI;
+
     public int count = 0;
     public int score = 0;
     public PolygonSpawn ps;
@@ -29,6 +32,7 @@ public class TouchReceiver02 : MonoBehaviour
     {
     	finalScore = 0;
     	endScore = 0;
+        scorelabel.text = "0";
         stageUp = new int[10];
         stageUp[0] = 20;
     }
@@ -67,7 +71,8 @@ public class TouchReceiver02 : MonoBehaviour
             else
             {
                 ps.RemoveFrontObject();
-                Application.LoadLevel("endScene");
+                gameOverUI.GetComponent<ActivateUI>().EnabledAll();
+                gameOverUI.GetComponentInChildren<ViewAd>().init(endScore);
             }
         }
 
@@ -75,13 +80,15 @@ public class TouchReceiver02 : MonoBehaviour
     void FixedUpdate()
     {
         GameObject front = ps.GetFrontObject();
+        endScore = (int)finalScore;
         if (front != null && front.transform.localPosition.z >= userPoly.transform.localPosition.z)       //
         {
             ps.RemoveFrontObject();
-            Application.LoadLevel("endScene");
+            //SceneManager.LoadScene("endScene");
+            gameOverUI.GetComponent<ActivateUI>().EnabledAll();
+            gameOverUI.GetComponentInChildren<ViewAd>().init(endScore);
         }
 
-        endScore = (int)finalScore;
         scorelabel.text = endScore.ToString();
     }
 
@@ -89,10 +96,12 @@ public class TouchReceiver02 : MonoBehaviour
     public void TouchPause()
     {
         Time.timeScale = 0;
+        PolySoundManager.PauseAudio();
         Debug.Log("touch Pause");
     }
     public void TouchResume()
     {
+        PolySoundManager.UnPauseAudio();
         Time.timeScale = 1;
         Debug.Log("TouchResume");
     }

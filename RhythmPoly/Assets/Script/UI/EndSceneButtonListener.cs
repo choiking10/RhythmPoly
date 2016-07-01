@@ -8,7 +8,7 @@ public class EndSceneButtonListener : MonoBehaviour
     IEnumerator Load()
     {
         AsyncOperation async = SceneManager.LoadSceneAsync("InGameScene");
-
+       
         while (!async.isDone)
         {
             yield return true;
@@ -17,7 +17,8 @@ public class EndSceneButtonListener : MonoBehaviour
 
     public void Retry()
     {
-        Application.LoadLevel("InGameScene");
+        Time.timeScale = 1;
+        SceneManager.LoadScene("InGameScene");
         loading.SetActive(true);
         Load();
     }

@@ -28,10 +28,12 @@ public class BackgroundManager  : MonoBehaviour
             ChangeSeq(bg);
             BgObjList.Add(bg);
         }
+      
     }
 
     void FixedUpdate()
     {
+        
         if (Time.fixedTime >= befTime + unittime) // unittime에 한번씩  실행
         {
             befTime = Time.fixedTime;
@@ -39,6 +41,7 @@ public class BackgroundManager  : MonoBehaviour
             PatDownSeq();
         }
         RandomGen();
+        
     }
     public GameObject GetTargetBG()
     {
