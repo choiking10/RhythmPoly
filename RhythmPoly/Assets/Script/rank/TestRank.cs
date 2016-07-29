@@ -7,7 +7,7 @@ public class TestRank : MonoBehaviour {
 	void Start () {
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
-        
+        LogIn();
 	}
     public void LogIn()
     {

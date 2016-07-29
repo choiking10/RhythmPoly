@@ -14,23 +14,15 @@ public class BackgroundManager  : MonoBehaviour
     public GameObject[] bglist;
     public GameObject[] patlist;
     public GameObject bgcontainer;
-    public Camera bgCam;
-    public Sprite[] PatSprite;
-    public Sprite[] bgSprite;
-    public ArrayList BgObjList = new ArrayList();
+    public static Sprite[] PatSprite;
+    public static Sprite[] bgSprite;
+
+    public static BackgroundInfo[] backInfo;
     void Start()
     {
         befTime = Time.fixedTime;
-        bgCam = gameObject.GetComponent<Camera>();
-        foreach (GameObject bg in bglist)
-        {
-            Debug.Log("hello");
-            ChangeSeq(bg);
-            BgObjList.Add(bg);
-        }
-      
+        UnPackBackgroundData();
     }
-
     void FixedUpdate()
     {
         
@@ -66,7 +58,7 @@ public class BackgroundManager  : MonoBehaviour
         Vector3 spos = initpos.GetComponent<RectTransform>().position;
         countbg++;
         if (countbg < 0) countbg = 0;
-        foreach (GameObject pat in BgObjList)
+        foreach (GameObject pat in bglist)
         {
             Vector3 pos = pat.GetComponent<RectTransform>().position;
             pos.y -= downframe * 2;
@@ -156,5 +148,68 @@ public class BackgroundManager  : MonoBehaviour
                 next.GetComponentInChildren<Image>().color = tbg.GetComponentInChildren<Image>().color;
             }
         }
+    }
+    
+    void initBgStaticMember()
+    {
+        bgSprite = new Sprite[3];
+        PatSprite = new Sprite[5];
+
+        for (int i = 0; i < 3; i++)
+            bgSprite[i] = Resources.Load<Sprite>("bg" + (i + 1));
+        
+        for (int i = 0; i < 5; i++)
+            PatSprite[i] = Resources.Load<Sprite>("pattern-" + (i + 1));
+
+    }
+    void initBground()
+    {
+        initBgStaticMember();
+
+        Image[] imgs = bgcontainer.GetComponentsInChildren<Image>();
+        
+        for (int i = 0; i < 6; i++)
+        {
+            if (i % 2 == 1)
+            {
+                imgs[i].sprite = bgSprite[i / 2];
+            }
+        }
+        for (int i = 0; i < 3; i++) ChangeSeq(bglist[i]);
+    }
+    void PackBackgroundData()
+    {
+        backInfo = new BackgroundInfo[6];
+        Image[] imgs = bgcontainer.GetComponentsInChildren<Image>();
+        Debug.Log(imgs.Length);
+        for (int i = 0; i < 6; i++)
+        {
+            backInfo[i] = new BackgroundInfo();
+            backInfo[i].col = imgs[i].color;
+            backInfo[i].source = imgs[i].sprite;
+            backInfo[i].yval =
+                   imgs[i].transform.parent.GetComponent<RectTransform>().localPosition.y;
+        }
+    }
+    void UnPackBackgroundData()
+    {
+        if (backInfo == null)
+        {
+            initBground();
+            return;
+        }
+        Image[] imgs = bgcontainer.GetComponentsInChildren<Image>();
+        for (int i = 0; i < 6; i++)
+        {
+            imgs[i].color  = backInfo[i].col;
+            imgs[i].sprite = backInfo[i].source;
+            RectTransform trans = imgs[i].transform.parent.GetComponent<RectTransform>();
+            trans.localPosition = new Vector3(0, backInfo[i].yval, 0);
+       
+        }
+    }
+    void OnDestroy()
+    {
+        PackBackgroundData();
     }
 }

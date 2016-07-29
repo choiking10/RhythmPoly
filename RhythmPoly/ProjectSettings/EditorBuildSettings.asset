@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scene/tuto_develop.unity
-  - enabled: 1
     path: Assets/Scene/MainMenu2.unity
+  - enabled: 1
+    path: Assets/Scene/tuto_develop.unity
   - enabled: 1
     path: Assets/Scene/InGameScene.unity
   - enabled: 0
@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scene/endScene.unity
   - enabled: 0
     path: Assets/Scene/rank.unity
+  - enabled: 0
+    path: Assets/test.unity

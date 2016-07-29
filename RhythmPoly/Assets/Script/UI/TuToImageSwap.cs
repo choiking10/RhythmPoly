@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImageSwap : MonoBehaviour
+public class TuToImageSwap : MonoBehaviour
 {
     public float imageSize;
     public int imageCount;

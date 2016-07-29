@@ -16,11 +16,13 @@ public class Title_PlayButton : MonoBehaviour {
 
     public void Push(){
         loading.SetActive(true);
-        StartCoroutine(Load());
+        string s = "InGameScene";
+        s = "tuto_develop";
+        StartCoroutine(Load(s));
     }
-    IEnumerator Load()
+    IEnumerator Load(string scene)
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync("InGameScene");
+        AsyncOperation async = SceneManager.LoadSceneAsync(scene);
 
         while (!async.isDone)
         {
