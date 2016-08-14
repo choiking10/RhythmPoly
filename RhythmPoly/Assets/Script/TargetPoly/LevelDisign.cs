@@ -24,7 +24,7 @@ public class LevelDisign : MonoBehaviour
         cameraLimit = new Vector3[20];
 
         for (int i = 0; i < matchLeveling.Length; i++)
-            matchLeveling[i] = 5 + i * 5;
+            matchLeveling[i] = 2 + i * 2;
          for (int i = 0; i < limitAngLevel.Length; i++)
             limitAngLevel[i] = 2 +  i/6;
         matchLeveling[0] = 1;

@@ -659,6 +659,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 407280, guid: b12c57244744f4f15a24fcdc966e1de5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.0015625
+      objectReference: {fileID: 0}
+    - target: {fileID: 407280, guid: b12c57244744f4f15a24fcdc966e1de5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.0015625
+      objectReference: {fileID: 0}
+    - target: {fileID: 407280, guid: b12c57244744f4f15a24fcdc966e1de5, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.0015625
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b12c57244744f4f15a24fcdc966e1de5, type: 2}
   m_IsPrefabParent: 0
@@ -954,6 +966,7 @@ GameObject:
   - 222: {fileID: 2136664831}
   - 114: {fileID: 2136664830}
   - 114: {fileID: 2136664829}
+  - 114: {fileID: 2136664832}
   m_Layer: 5
   m_Name: grade
   m_TagString: Untagged
@@ -1016,7 +1029,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2136664830}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2136664832}
+        m_MethodName: LeaderBoard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2136664830
@@ -1052,3 +1076,14 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2136664827}
+--- !u!114 &2136664832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136664827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6874e7d5640774a9cb34e7cd23b85946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

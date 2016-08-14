@@ -5,27 +5,13 @@ public class TestRank : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        PlayGamesPlatform.DebugLogEnabled = true;
-        PlayGamesPlatform.Activate();
-        LogIn();
-	}
-    public void LogIn()
-    {
-        Social.localUser.Authenticate((bool success) =>
-        {
-            if (success)
-            {
-                Debug.Log("Log In");
-            }
-            else
-            {
-                Debug.Log("Login failed");
-            }
-        });
+        HighScoreManager.GetInstance().UpdateHighScore((int)TouchReceiver02.finalScore);
     }
+    
     public void LeaderBoard()
     {
-        PlayGamesPlatform.Instance.ShowLeaderboardUI("CggIjvO18kcQAhAA");
+
+        HighScoreManager.GetInstance().ShowLeaderBoard();
     }
     public void ReportLeaderBoard()
     {
