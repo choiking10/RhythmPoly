@@ -6,7 +6,7 @@ public class Title_PlayButton : MonoBehaviour {
     public GameObject loading;
 	// Use this for initialization
 	void Start () {
-	
+        HighScoreManager.GetInstance();
 	}
 	
 	// Update is called once per frame
