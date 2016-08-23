@@ -9,9 +9,11 @@ public class ViewAd : MonoBehaviour
 {
     public bool flag = true;
     public Text score;
+    public Scrollbar wating;
     void Start()
     {
         Advertisement.Initialize("1089505", true);
+        wating.size = 0f;
     }
     public void init(int Score)
     {
@@ -23,7 +25,7 @@ public class ViewAd : MonoBehaviour
             return;
         }
         Time.timeScale = 0f;
-        score.text = Score + " POLY";
+        score.text = ""+Score;
         StartCoroutine("WaitingUser");
         Debug.Log("nono");
     }
@@ -31,10 +33,11 @@ public class ViewAd : MonoBehaviour
     {
         while (true)
         {
-            Color col = GetComponent<Image>().color;
-            col.a += 1f/200f;
-            GetComponent<Image>().color = col;
-            if (col.a >= 0.99f)
+            wating.size += 1f / 200f;
+           // Color col = GetComponent<Image>().color;
+           // col.a += 1f/200f;
+           // GetComponent<Image>().color = col;
+            if (wating.size >= 0.99f)
             {
                 Debug.Log("cor die");
                 GoGameEnd();

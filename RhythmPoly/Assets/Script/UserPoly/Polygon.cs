@@ -13,6 +13,7 @@ public class Polygon : MonoBehaviour {
 			poly [i].active = false;
 		nowPoly = poly [0];
         lastPoly = 3;
+        DontDestroyOnLoad(gameObject);
 	}
 
     void AllFalse()
